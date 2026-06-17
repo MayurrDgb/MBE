@@ -34,15 +34,15 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 .slide.active{display:block;}
 .bord{background:radial-gradient(130% 120% at 20% -8%,#B00A18 0%,#6E0813 42%,#2a0509 74%,#160609 100%);color:#fff;}
 .night{background:#0c0608;color:#fff;}
-/* terrain de foot (slide agenda) */
-.pitch{color:#fff;background:
-  repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 116px,rgba(0,0,0,0) 116px 232px),
-  linear-gradient(165deg,#1d6b39 0%,#155730 48%,#0c3c20 100%);}
+/* stade sur fond rouge bordeaux (slide agenda) */
+.pitch{color:#fff;background:radial-gradient(130% 120% at 20% -8%,#B00A18 0%,#6E0813 42%,#2a0509 74%,#160609 100%);}
 .pitch::before{content:"";position:absolute;inset:0;pointer-events:none;background:
-  radial-gradient(circle at 50% 50%,transparent 84px,rgba(255,255,255,.16) 85px 88px,transparent 89px),
-  linear-gradient(90deg,transparent calc(50% - 1.5px),rgba(255,255,255,.16) calc(50% - 1.5px) calc(50% + 1.5px),transparent calc(50% + 1.5px));}
-.pitch::after{content:"";position:absolute;inset:22px;border:2px solid rgba(255,255,255,.14);border-radius:5px;pointer-events:none;}
+  radial-gradient(circle at 50% 50%,transparent 92px,rgba(255,255,255,.13) 93px 96px,transparent 97px),
+  linear-gradient(90deg,transparent calc(50% - 1.5px),rgba(255,255,255,.13) calc(50% - 1.5px) calc(50% + 1.5px),transparent calc(50% + 1.5px));}
+.pitch::after{content:"";position:absolute;inset:22px;border:2px solid rgba(255,255,255,.12);border-radius:6px;pointer-events:none;}
 .pitch .phead,.pitch .pgrid{position:relative;z-index:2;}
+.pgrid{display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:16px;}
+.pcard{width:244px;}
 
 /* brand */
 .brand{position:absolute;top:26px;right:44px;width:118px;height:44px;background:var(--logo) right center/contain no-repeat;z-index:6;}
@@ -78,8 +78,8 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 
 /* ===== PROGRAMME (cartes) ===== */
 .phead{position:absolute;left:60px;top:50px;right:60px;}
-.pgrid{position:absolute;left:60px;right:60px;top:160px;bottom:46px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:16px;}
-.pcard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px 18px;position:relative;display:flex;flex-direction:column;gap:6px;backdrop-filter:blur(4px);}
+.pgrid{position:absolute;left:60px;right:60px;top:150px;bottom:46px;gap:18px;}
+.pcard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:18px;position:relative;display:flex;flex-direction:column;gap:6px;backdrop-filter:blur(4px);min-height:150px;justify-content:center;}
 .pcard .pn{font-family:var(--f);font-weight:700;font-size:15px;color:#fff;background:var(--red);width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;}
 .pcard .pe{position:absolute;top:16px;right:16px;font-size:22px;opacity:.9;}
 .pcard .pt{font-size:14px;color:#fff;line-height:1.3;margin-top:6px;}
@@ -121,7 +121,7 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 .head .t{font-size:36px;}
 /* image-led (illustrations Print en grand plan) */
 .imed-txt{position:absolute;left:60px;top:0;bottom:0;width:480px;display:flex;flex-direction:column;justify-content:center;}
-.imed-img{position:absolute;left:540px;right:24px;top:36px;bottom:36px;display:flex;align-items:center;justify-content:center;}
+.imed-img{position:absolute;left:540px;right:24px;top:86px;bottom:40px;display:flex;align-items:center;justify-content:center;}
 .imed-img img{max-width:100%;max-height:100%;object-fit:contain;}
 .col-mid{position:absolute;left:60px;right:60px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;}
 
@@ -166,7 +166,8 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 .tip p{font-size:12.5px;color:var(--muted-l);line-height:1.45;margin-top:3px;}
 
 /* galerie — réalisations transparentes (labels blancs) directement sur le fond sombre */
-.galimg{position:absolute;left:44px;right:44px;top:92px;bottom:30px;width:auto;height:auto;object-fit:contain;}
+.galwrap{position:absolute;left:40px;right:40px;top:96px;bottom:28px;display:flex;align-items:center;justify-content:center;}
+.galwrap img{max-width:100%;max-height:100%;object-fit:contain;}
 .galcap{position:absolute;left:60px;top:50px;z-index:3;}
 
 /* témoignage */
@@ -247,7 +248,7 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
   </div>
   <div class="pgrid">
     <div class="pcard"><div class="pn">1</div><div class="pe">🎬</div><div class="pt">Kaïna donne le ton</div><div class="pp">Kaïna</div></div>
-    <div class="pcard span2"><div class="pn">2</div><div class="pe">🌍</div><div class="pt">Mail Boxes Etc. France &amp; Cholet</div><div class="pp">Aude &amp; Wesley</div></div>
+    <div class="pcard"><div class="pn">2</div><div class="pe">🌍</div><div class="pt">Mail Boxes Etc. France &amp; Cholet</div><div class="pp">Aude &amp; Wesley</div></div>
     <div class="pcard"><div class="pn">3</div><div class="pe">🎯</div><div class="pt">On vous laisse faire bonne impression — le jeu</div><div class="pp">Tous</div></div>
     <div class="pcard"><div class="pn">4</div><div class="pe">⭐</div><div class="pt">Expérience client</div><div class="pp">Baptiste Barbosa</div></div>
     <div class="pcard"><div class="pn">5</div><div class="pe">🖨️</div><div class="pt">Les solutions d'impression &amp; graphisme</div><div class="pp">Aude &amp; Kaïna</div></div>
@@ -468,16 +469,16 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
   </div>
 </section>
 
-<!-- 18 — IMPRESSION + EXPÉDITION -->
+<!-- 18 — IMPRESSION + EXPÉDITION (image incrustée en grand) -->
 <section class="slide">
   <div class="redband"><h2>MBE Cholet — bien plus qu'un imprimeur</h2></div>
-  <div style="position:absolute;left:110px;right:110px;top:148px;bottom:56px;background:#fff;border-radius:20px;box-shadow:0 14px 36px rgba(0,0,0,.12);border:1px solid var(--line-l);padding:36px 46px;display:flex;align-items:center;gap:36px;">
-    <div style="flex:1;">
-      <div class="badge" style="position:static;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;background:linear-gradient(135deg,#E2001A,#8B0A16);margin-bottom:16px;">05</div>
-      <h3 style="font-weight:700;font-size:20px;color:var(--ink);text-transform:uppercase;letter-spacing:.4px;border-bottom:2px solid var(--red);display:inline-block;padding-bottom:10px;margin-bottom:18px;">Impression + expédition intégrée</h3>
-      <ul class="plist"><li>Préparation des colis</li><li>Emballage professionnel</li><li>Expédition en France et à l'international</li></ul>
-    </div>
-    <div style="flex:0 0 320px;height:280px;display:flex;align-items:center;justify-content:center;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/886688595f398372721084da8e148937_Illustration_Print%20%284%29.png" alt="Colis personnalisé" style="max-width:100%;max-height:100%;object-fit:contain;"></div>
+  <div style="position:absolute;left:60px;top:108px;bottom:40px;width:470px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:17px;background:linear-gradient(135deg,#E2001A,#8B0A16);margin-bottom:18px;">05</div>
+    <h3 style="font-weight:700;font-size:24px;color:var(--ink);text-transform:uppercase;letter-spacing:.4px;border-bottom:2px solid var(--red);display:inline-block;padding-bottom:12px;margin-bottom:22px;">Impression + expédition intégrée</h3>
+    <ul class="plist" style="gap:14px;"><li style="font-size:17px;">Préparation des colis</li><li style="font-size:17px;">Emballage professionnel</li><li style="font-size:17px;">Expédition en France et à l'international</li></ul>
+  </div>
+  <div style="position:absolute;left:500px;right:-30px;top:104px;bottom:-10px;display:flex;align-items:center;justify-content:center;">
+    <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/886688595f398372721084da8e148937_Illustration_Print%20%284%29.png" alt="Colis personnalisé Home Deco" style="max-width:100%;max-height:100%;object-fit:contain;">
   </div>
 </section>
 
@@ -535,7 +536,7 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 <!-- 23 — CONSEILS -->
 <section class="slide">
   <div class="head"><div class="eyebrow"><span class="ln"></span>LES BONS RÉFLEXES</div><h2 class="t" style="margin-top:10px;">Avant d'imprimer</h2></div>
-  <div class="tips" style="position:absolute;left:60px;right:60px;top:160px;bottom:46px;align-content:center;">
+  <div class="tips" style="position:absolute;left:60px;right:60px;top:152px;bottom:56px;align-content:space-between;">
     <div class="tip"><div class="ic">🖨️</div><div><h4>Qualité fichier</h4><p>Minimum 300 dpi pour une impression nette ; en basse résolution, le rendu sera flou.</p></div></div>
     <div class="tip"><div class="ic">📐</div><div><h4>Fond perdu</h4><p>Prévoir 3 mm au-delà du format final pour éviter les bordures blanches après découpe.</p></div></div>
     <div class="tip"><div class="ic">✂️</div><div><h4>Traits de coupe</h4><p>À inclure selon le support — en cas de doute, demandez à votre centre MBE.</p></div></div>
@@ -545,21 +546,18 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
   </div>
 </section>
 
-<!-- 22-24 — GALERIES RÉALISATIONS (transparent, labels blancs, sur fond sombre) -->
+<!-- 24-26 — GALERIES RÉALISATIONS (transparent, labels blancs, sur fond sombre) -->
 <section class="slide bord">
-  <div class="brand"></div>
   <div class="galcap"><div class="eyebrow"><span class="ln"></span>RÉALISATIONS · MBE CHOLET</div></div>
-  <img class="galimg" src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/c7fce099b3279d5ea00a08b4e3d79464_Illustration_Print3301_a.png" alt="Réalisations MBE Cholet">
+  <div class="galwrap"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/c7fce099b3279d5ea00a08b4e3d79464_Illustration_Print3301_a.png" alt="Réalisations MBE Cholet"></div>
 </section>
 <section class="slide bord">
-  <div class="brand"></div>
   <div class="galcap"><div class="eyebrow"><span class="ln"></span>RÉALISATIONS · MBE CHOLET</div></div>
-  <img class="galimg" src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/b9d6904b4bd9830b05faab84751a21a9_Illustration_Print3301_b.png" alt="Réalisations MBE Cholet">
+  <div class="galwrap"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/b9d6904b4bd9830b05faab84751a21a9_Illustration_Print3301_b.png" alt="Réalisations MBE Cholet"></div>
 </section>
 <section class="slide bord">
-  <div class="brand"></div>
   <div class="galcap"><div class="eyebrow"><span class="ln"></span>RÉALISATIONS · MBE CHOLET</div></div>
-  <img class="galimg" src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/84c24d413a8ffe874e7c5eb4243a966f_Illustration_Print3301_c.png" alt="Réalisations MBE Cholet">
+  <div class="galwrap"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/84c24d413a8ffe874e7c5eb4243a966f_Illustration_Print3301_c.png" alt="Réalisations MBE Cholet"></div>
 </section>
 
 <!-- 25 — TRANSITION : Wesley -->
