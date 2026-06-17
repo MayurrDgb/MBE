@@ -158,6 +158,12 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 .plist li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:50%;background:var(--red);}
 .checks li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--red);font-weight:700;}
 
+/* conseils — vignettes sur bordeaux */
+.cgrid{position:absolute;left:60px;right:60px;top:158px;bottom:46px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:18px;}
+.ccard{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px;justify-content:center;backdrop-filter:blur(4px);}
+.ccard .ic{width:46px;height:46px;border-radius:13px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.ccard h4{font-size:13.5px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.3px;}
+.ccard p{font-size:12.5px;color:rgba(255,255,255,.72);line-height:1.45;}
 /* tips */
 .tips{display:grid;grid-template-columns:1fr 1fr;gap:18px 30px;}
 .tip{display:flex;gap:14px;align-items:flex-start;}
@@ -257,15 +263,7 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
   </div>
 </section>
 
-<!-- 3 — VIDÉO -->
-<section class="slide night">
-  <div class="vidtag">MBE · LA VIDÉO</div>
-  <div class="ytwrap">
-    <iframe class="yt" src="https://www.youtube.com/embed/xkfvNPpZi40?rel=0&modestbranding=1" title="MBE — vidéo impression" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-  </div>
-</section>
-
-<!-- 4 — TRANSITION : Kaïna -->
+<!-- TRANSITION : Kaïna -->
 <section class="slide bord">
   <div class="brand"></div>
   <div class="tr-text">
@@ -533,16 +531,20 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
   <div class="imed-img"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/3a0c995dc81d11e9a88333e7af1df17b_Illustration_Print%20%283%29.png" alt="De l'esquisse à l'affiche"></div>
 </section>
 
-<!-- 23 — CONSEILS -->
-<section class="slide">
-  <div class="head"><div class="eyebrow"><span class="ln"></span>LES BONS RÉFLEXES</div><h2 class="t" style="margin-top:10px;">Avant d'imprimer</h2></div>
-  <div class="tips" style="position:absolute;left:60px;right:60px;top:152px;bottom:56px;align-content:space-between;">
-    <div class="tip"><div class="ic">🖨️</div><div><h4>Qualité fichier</h4><p>Minimum 300 dpi pour une impression nette ; en basse résolution, le rendu sera flou.</p></div></div>
-    <div class="tip"><div class="ic">📐</div><div><h4>Fond perdu</h4><p>Prévoir 3 mm au-delà du format final pour éviter les bordures blanches après découpe.</p></div></div>
-    <div class="tip"><div class="ic">✂️</div><div><h4>Traits de coupe</h4><p>À inclure selon le support — en cas de doute, demandez à votre centre MBE.</p></div></div>
-    <div class="tip"><div class="ic">🎨</div><div><h4>Colorimétrie</h4><p>Travailler en CMJN, pas en RVB : les couleurs écran ne s'impriment pas à l'identique.</p></div></div>
-    <div class="tip"><div class="ic">📄</div><div><h4>Format de fichier</h4><p>Le PDF print-ready garantit la conformité de votre fichier.</p></div></div>
-    <div class="tip"><div class="ic">💬</div><div><h4>Un doute&nbsp;?</h4><p>Pas de fichier prêt&nbsp;? Notre équipe graphisme s'occupe de tout.</p></div></div>
+<!-- 23 — CONSEILS (vignettes sur bordeaux) -->
+<section class="slide bord">
+  <div class="brand"></div>
+  <div class="phead">
+    <div class="eyebrow"><span class="ln"></span>LES BONS RÉFLEXES</div>
+    <h2 class="t" style="font-size:36px;margin-top:10px;">Avant d'imprimer</h2>
+  </div>
+  <div class="cgrid">
+    <div class="ccard"><div class="ic">🖨️</div><h4>Qualité fichier</h4><p>Minimum 300 dpi pour une impression nette ; en basse résolution, le rendu sera flou.</p></div>
+    <div class="ccard"><div class="ic">📐</div><h4>Fond perdu</h4><p>Prévoir 3 mm au-delà du format final pour éviter les bordures blanches après découpe.</p></div>
+    <div class="ccard"><div class="ic">✂️</div><h4>Traits de coupe</h4><p>À inclure selon le support — en cas de doute, demandez à votre centre MBE.</p></div>
+    <div class="ccard"><div class="ic">🎨</div><h4>Colorimétrie</h4><p>Travailler en CMJN, pas en RVB : les couleurs écran ne s'impriment pas à l'identique.</p></div>
+    <div class="ccard"><div class="ic">📄</div><h4>Format de fichier</h4><p>Le PDF print-ready garantit la conformité de votre fichier.</p></div>
+    <div class="ccard"><div class="ic">💬</div><h4>Un doute&nbsp;?</h4><p>Pas de fichier prêt&nbsp;? Notre équipe graphisme s'occupe de tout.</p></div>
   </div>
 </section>
 
@@ -617,24 +619,7 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
   </div>
 </section>
 
-<!-- 29 — RÉSULTAT DU JEU -->
-<section class="slide bord">
-  <div class="brand"></div>
-  <div class="tr-text" style="width:420px;">
-    <div class="eyebrow"><span class="ln"></span>ÉTAPE 5</div>
-    <h2 class="t" style="font-size:40px;margin-top:12px;">Le résultat du jeu&nbsp;!</h2>
-    <p class="lead" style="margin-top:14px;font-size:16px;">Les 5 bonnes réponses, récapitulées par Kaïna.</p>
-  </div>
-  <div class="results">
-    <div class="res"><b>A6 dans un A0&nbsp;?</b> → 32</div>
-    <div class="res"><b>Papier «&nbsp;Grain Cuir&nbsp;»&nbsp;?</b> → sa texture imite le cuir</div>
-    <div class="res"><b>Poids de 5 ramettes A4&nbsp;?</b> → 12,5 kg</div>
-    <div class="res"><b>Couleur la plus utilisée&nbsp;?</b> → le Noir</div>
-    <div class="res"><b>CMJN&nbsp;?</b> → Cyan Magenta Jaune Noir</div>
-  </div>
-</section>
-
-<!-- 30 — MERCI -->
+<!-- MERCI -->
 <section class="slide bord">
   <div class="merci">
     <div style="width:152px;height:66px;background:var(--logo-neg) center/contain no-repeat;margin-bottom:22px;"></div>
@@ -645,12 +630,20 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
   </div>
 </section>
 
+<!-- CLÔTURE — VIDÉO (le petit truc sympa pour finir) -->
+<section class="slide night">
+  <div class="vidtag">ET SI C'ÉTAIT FACILE D'IMPRIMER&nbsp;? · LA VIDÉO</div>
+  <div class="ytwrap">
+    <iframe class="yt" src="https://www.youtube.com/embed/xkfvNPpZi40?rel=0&modestbranding=1" title="MBE — vidéo impression" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+</section>
+
 </div></div>
 
 <div id="progress"></div>
 <div id="nav">
   <button onclick="go(-1)">← Préc.</button>
-  <span id="counter">1 / 32</span>
+  <span id="counter">1 / 31</span>
   <button onclick="go(1)">Suiv. →</button>
   <button id="sndbtn" onclick="toggleSound()" title="Son (quiz)">🔊</button>
   <button id="fullbtn" onclick="toggleFull()" title="Plein écran (F)">⛶</button>
