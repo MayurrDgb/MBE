@@ -116,7 +116,8 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 .bloc li{position:relative;padding-left:22px;font-size:14px;color:var(--ink);line-height:1.4;}
 .bloc li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--red);}
 
-/* galleries (slides 18-19) */
+/* galleries — full-bleed composites (slides 18-20) */
+.bleed{position:absolute;left:0;right:0;top:0;bottom:30px;width:100%;height:calc(100% - 30px);object-fit:contain;}
 .gal{position:absolute;left:64px;right:64px;top:96px;bottom:64px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:20px 22px;}
 .ph{background:var(--gray);border:1px dashed #d6d6d8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
 .ph .ico{font-size:30px;opacity:.5;}
@@ -452,35 +453,25 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
   <div class="foot">© 2025 Mail Boxes Etc. — une entreprise Fortidia.</div>
 </section>
 
-<!-- ============ 18 — GALERIE 1 ============ -->
+<!-- ============ 18 — GALERIE RÉALISATIONS 1/3 ============ -->
 <section class="slide" data-cholet>
-  <div class="brand"></div>
-  <div class="gal">
-    <div class="ph"><div class="ico">📄</div><div class="lb">Flyer</div></div>
-    <div class="ph"><div class="ico">💌</div><div class="lb">Carte de vœux</div></div>
-    <div class="ph"><div class="ico">🪧</div><div class="lb">Affiche adhésive</div></div>
-    <div class="ph"><div class="ico">🍾</div><div class="lb">Limonadier</div></div>
-    <div class="ph"><div class="ico">🏷️</div><div class="lb">Étiquette</div></div>
-    <div class="ph"><div class="ico">📰</div><div class="lb">Affiche</div></div>
-  </div>
-  <div class="galnote cap">Réalisations du Centre MBE Cholet — remplacer par vos propres exemples</div>
+  <img class="bleed" src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/c7fce099b3279d5ea00a08b4e3d79464_Illustration_Print3301_a.png" alt="Réalisations MBE Cholet — flyer, carte de vœux, affiche, limonadier, étiquette">
+  <div class="galnote cap">Réalisations du Centre MBE Cholet</div>
 </section>
 
-<!-- ============ 19 — GALERIE 2 ============ -->
-<section class="slide" data-cholet>
-  <div class="brand"></div>
-  <div class="gal">
-    <div class="ph"><div class="ico">🧥</div><div class="lb">Broderie sur veste</div></div>
-    <div class="ph"><div class="ico">🖊️</div><div class="lb">Gravure sur stylo</div></div>
-    <div class="ph"><div class="ico">💳</div><div class="lb">Carte de visite</div></div>
-    <div class="ph"><div class="ico">🎁</div><div class="lb">Chèque cadeau</div></div>
-    <div class="ph"><div class="ico">🛍️</div><div class="lb">Tote Bag</div></div>
-    <div class="ph"><div class="ico">🔖</div><div class="lb">Tampon</div></div>
-  </div>
-  <div class="galnote cap">Réalisations du Centre MBE Cholet — remplacer par vos propres exemples</div>
+<!-- ============ 19 — GALERIE RÉALISATIONS 2/3 ============ -->
+<section class="slide dark" data-cholet style="background:#000;">
+  <img class="bleed" src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/b9d6904b4bd9830b05faab84751a21a9_Illustration_Print3301_b.png" alt="Réalisations MBE Cholet — broderie, gravure stylo, carte de visite, chèque cadeau, tote bag">
+  <div class="galnote cap" style="color:#bbb;">Réalisations du Centre MBE Cholet</div>
 </section>
 
-<!-- ============ 20 — ÉCOSYSTÈME ============ -->
+<!-- ============ 20 — GALERIE RÉALISATIONS 3/3 ============ -->
+<section class="slide" data-cholet>
+  <img class="bleed" src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/84c24d413a8ffe874e7c5eb4243a966f_Illustration_Print3301_c.png" alt="Réalisations MBE Cholet — plaquette, tampon, planning, flammes, dépliant">
+  <div class="galnote cap">Réalisations du Centre MBE Cholet</div>
+</section>
+
+<!-- ============ 21 — ÉCOSYSTÈME ============ -->
 <section class="slide" data-cholet>
   <div class="brand"></div>
   <div style="position:absolute;left:64px;top:54px;">
@@ -502,7 +493,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
   </div>
 </section>
 
-<!-- ============ 21 — MERCI ============ -->
+<!-- ============ 22 — MERCI ============ -->
 <section class="slide" data-cholet>
   <div class="brand"></div>
   <div class="pane wide">
@@ -518,7 +509,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 <div id="progress"></div>
 <div id="nav">
   <button onclick="go(-1)">← Préc.</button>
-  <span id="counter">1 / 21</span>
+  <span id="counter">1 / 22</span>
   <button onclick="go(1)">Suiv. →</button>
   <button id="fullbtn" onclick="toggleFull()" title="Plein écran (F)">⛶</button>
 </div>
