@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="mbe">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Présentations MBE — Produits, Services & Institutionnel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===================== MBE TOKENS ===================== */
+:root{
+  --bg:#FFFFFF; --ink:#221E1F; --muted:#76767A; --soft:#939598;
+  --accent:#E2001A; --on-accent:#FFFFFF;
+  --panel:#F7F7F8; --line:#E7E7E9;
+  --logo:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/227727a155bbcb301040aa648ff4841a_MBE%20Logo_complet%20avec%20swoosh%20et%20baseline.png");
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{min-height:100%;background:var(--bg);font-family:Ubuntu,Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
+
+/* ===================== HERO ===================== */
+.hero{position:relative;padding:60px 0 26px;}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 32px;}
+.logo{height:58px;width:210px;background:var(--logo) left center/contain no-repeat;margin-bottom:38px;}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:3.5px;color:var(--accent);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.eyebrow .ln{display:inline-block;width:34px;height:3px;background:var(--accent);border-radius:2px;}
+h1{font-weight:700;font-size:52px;line-height:1.05;letter-spacing:-1px;color:var(--ink);max-width:760px;}
+h1 b{color:var(--accent);font-weight:700;}
+.intro{font-size:16px;color:var(--muted);line-height:1.6;max-width:600px;margin-top:20px;}
+
+/* ===================== SECTIONS ===================== */
+.section{padding:30px 0 4px;}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:20px;}
+.sec-head .tag{font-size:12px;font-weight:700;letter-spacing:3px;color:var(--ink);}
+.sec-head .rule{flex:1;height:1px;background:var(--line);}
+.sec-head .count{font-size:12px;color:var(--soft);font-weight:500;}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.card{display:flex;flex-direction:column;text-decoration:none;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:26px 24px 22px;position:relative;overflow:hidden;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;min-height:172px;}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(34,30,31,.13);border-color:transparent;}
+.card .bar{position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .22s ease;}
+.card:hover .bar{transform:scaleX(1);}
+.card .kicker{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--accent);margin-bottom:12px;}
+.card h2{font-weight:700;font-size:22px;line-height:1.15;color:var(--ink);margin-bottom:10px;}
+.card p{font-size:13px;line-height:1.6;color:var(--muted);flex:1;}
+.card .go{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-size:12.5px;font-weight:700;color:var(--ink);transition:gap .16s ease,color .16s ease;}
+.card:hover .go{gap:12px;color:var(--accent);}
+
+/* soon / placeholder card */
+.card.soon{pointer-events:none;border-style:dashed;background:var(--panel);}
+.card.soon h2,.card.soon .kicker{color:var(--soft);}
+.card.soon .go{color:var(--soft);}
+
+/* ===================== FOOTER ===================== */
+footer{margin-top:54px;border-top:1px solid var(--line);}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:22px 0 40px;flex-wrap:wrap;gap:10px;}
+.foot .conf{font-size:11px;color:var(--soft);}
+.foot .by{font-size:11px;color:var(--soft);}
+.foot .by b{color:var(--muted);font-weight:700;}
+
+@media(max-width:860px){.grid{grid-template-columns:1fr 1fr;}h1{font-size:40px;}}
+@media(max-width:560px){.grid{grid-template-columns:1fr;}h1{font-size:32px;}.wrap{padding:0 20px;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="logo" role="img" aria-label="Mail Boxes Etc."></div>
+    <div class="eyebrow"><span class="ln"></span>MBE FRANCE · PRÉSENTATIONS</div>
+    <h1>Nos présentations <b>produits &amp; services</b></h1>
+    <p class="intro">L'ensemble des présentations MBE — offres, produits, services et supports institutionnels — réunies en un seul endroit. Cliquez sur une carte pour ouvrir le deck.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section">
+    <div class="sec-head"><span class="tag">SERVICES</span><span class="rule"></span><span class="count">1 présentation</span></div>
+    <div class="grid">
+      <a class="card" href="Graphisme-Impression/">
+        <div class="bar"></div>
+        <div class="kicker">MBE PRINT &amp; MARKETING</div>
+        <h2>Graphisme &amp; Impression</h2>
+        <p>Création graphique et impression de tous vos supports de communication — du conseil au produit fini.</p>
+        <span class="go">Ouvrir le deck →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-head"><span class="tag">PRODUITS</span><span class="rule"></span><span class="count">à venir</span></div>
+    <div class="grid">
+      <span class="card soon">
+        <div class="bar"></div>
+        <div class="kicker">PROCHAINEMENT</div>
+        <h2>À venir</h2>
+        <p>Les présentations produits seront ajoutées ici.</p>
+        <span class="go">Bientôt</span>
+      </span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-head"><span class="tag">INSTITUTIONNEL</span><span class="rule"></span><span class="count">à venir</span></div>
+    <div class="grid">
+      <span class="card soon">
+        <div class="bar"></div>
+        <div class="kicker">PROCHAINEMENT</div>
+        <h2>À venir</h2>
+        <p>Les présentations institutionnelles seront ajoutées ici.</p>
+        <span class="go">Bientôt</span>
+      </span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="conf">© 2026 Mail Boxes Etc. — une société Fortidia · Document confidentiel — Département Marketing MBE France</span>
+    <span class="by">Réalisé par <b>Mayurr</b></span>
+  </div>
+</footer>
+
+</body>
+</html>
