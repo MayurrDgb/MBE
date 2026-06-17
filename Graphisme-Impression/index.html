@@ -1,23 +1,546 @@
 <!DOCTYPE html>
+<!--
+  DECK : MBE — Graphisme & Impression
+  VERSION : MBE Cholet — Temporaire (slides 10-21 spécifiques Centre Cholet)
+  VERSION GÉNÉRIQUE RÉSEAU : masquer/supprimer les slides 10-21 (data-cholet) → socle 1-9 réutilisable
+  Charté MBE uniquement · FR · transposition HTML du brief PptxGenJS.
+-->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="light only">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Graphisme &amp; Impression — MBE (en préparation)</title>
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+<title>Graphisme &amp; Impression — MBE</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font-family:Ubuntu,Arial,sans-serif;background:#fff;color:#221E1F;text-align:center;padding:24px;}
-.k{font-size:11px;font-weight:700;letter-spacing:3px;color:#E2001A;}
-h1{font-weight:700;font-size:34px;letter-spacing:-.5px;}
-p{color:#76767A;font-size:15px;}
-a{color:#E2001A;text-decoration:none;font-weight:700;font-size:13px;margin-top:8px;}
+/* ===================== CHARTE ===================== */
+:root{
+  --red:#E2001A; --ink:#1A1A1A; --white:#FFFFFF;
+  --anthra:#2D2D2D; --dark:#1A1A1A; --gray:#F4F4F4; --gray-blue:#F0F2F5;
+  --mid:#666666; --cream:#F5F0E8;
+  --navy:#1B2A6B; --orange:#E8773A; --beige:#B79460; --green:#2D8C4E;
+  --logo:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/227727a155bbcb301040aa648ff4841a_MBE%20Logo_complet%20avec%20swoosh%20et%20baseline.png");
+  --logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1514c79aab9578f67e2a630281a77039_MBE_Logo_tr_Ver_NEG.png");
+  --serif:Cambria,Georgia,"Times New Roman",serif;
+  --sans:Calibri,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var(--sans);color-scheme:light;}
+#deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+#stage{position:relative;width:1200px;height:675px;flex-shrink:0;overflow:hidden;transform-origin:center center;background:#fff;}
+#progress{position:fixed;top:0;left:0;height:3px;background:var(--red);z-index:999;transition:width .3s ease;pointer-events:none;}
+
+/* slides */
+.slide{position:absolute;inset:0;display:none;background:#fff;}
+.slide.active{display:block;}
+.slide.dark{background:var(--anthra);color:#fff;}
+.slide.reds{background:var(--red);color:#fff;}
+.slide.grayb{background:var(--gray-blue);}
+.slide.softg{background:var(--gray);}
+
+/* brand mark */
+.brand{position:absolute;top:24px;right:42px;width:120px;height:46px;background:var(--logo) right center/contain no-repeat;z-index:6;}
+.slide.dark .brand{background-image:var(--logo-neg);}
+.brand.circ{width:128px;height:54px;background:#fff;border-radius:30px;background-image:var(--logo);background-size:96px auto;background-position:center;background-repeat:no-repeat;box-shadow:0 4px 14px rgba(0,0,0,.18);}
+
+/* typography */
+.t{font-family:var(--serif);font-weight:700;color:var(--ink);line-height:1.06;letter-spacing:-.4px;}
+.dark .t,.reds .t{color:#fff;}
+.accroche{font-family:var(--sans);font-weight:700;color:var(--red);line-height:1.25;}
+.body{font-family:var(--sans);font-weight:400;color:var(--ink);line-height:1.6;font-size:16px;}
+.dark .body{color:#CCCCCC;}
+.cap{font-family:var(--sans);font-size:11px;color:var(--mid);}
+.peop{font-family:var(--sans);font-weight:700;letter-spacing:.5px;}
+
+/* layout: text pane left + media right */
+.pane{position:absolute;left:64px;top:0;bottom:0;width:500px;display:flex;flex-direction:column;justify-content:center;}
+.pane.wide{width:560px;}
+.media{position:absolute;right:34px;top:64px;bottom:54px;width:560px;display:flex;align-items:center;justify-content:center;}
+.media img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;}
+
+/* product bullet list */
+.plist{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:12px;}
+.plist.two{display:grid;grid-template-columns:1fr 1fr;gap:11px 22px;}
+.plist li{position:relative;padding-left:24px;font-size:16px;color:var(--ink);line-height:1.4;}
+.plist li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:50%;background:var(--red);}
+
+/* checkmarks list */
+.checks{list-style:none;margin:14px 0;display:flex;flex-direction:column;gap:9px;}
+.checks li{position:relative;padding-left:26px;font-size:15.5px;color:var(--ink);line-height:1.4;}
+.checks li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--red);font-weight:700;}
+
+/* video / cta buttons */
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--red);color:#fff;font-family:var(--sans);font-weight:700;text-decoration:none;border-radius:30px;padding:12px 22px;font-size:15px;transition:transform .15s ease,box-shadow .15s ease;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(226,0,26,.34);}
+
+/* tips (slide 6) */
+.tips{display:flex;flex-direction:column;gap:13px;margin-top:18px;}
+.tip{display:flex;gap:14px;align-items:flex-start;}
+.tip .ic{flex:0 0 38px;height:38px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.tip .tx h4{font-family:var(--sans);font-size:13.5px;font-weight:700;color:var(--ink);letter-spacing:.3px;text-transform:uppercase;}
+.tip .tx p{font-size:12.5px;color:var(--mid);line-height:1.4;margin-top:3px;}
+
+/* use-case cards (slide 7) */
+.cards2{position:absolute;left:64px;right:64px;top:128px;bottom:48px;display:grid;grid-template-columns:1fr 1fr;gap:34px;}
+.ucard{background:#fff;border-radius:16px;box-shadow:0 8px 26px rgba(0,0,0,.10);padding:18px 22px 22px;display:flex;flex-direction:column;}
+.ucard .uimg{height:210px;display:flex;align-items:center;justify-content:center;}
+.ucard .uimg img{max-width:100%;max-height:100%;object-fit:contain;}
+.ucard h3{font-family:var(--sans);color:var(--red);font-weight:700;font-size:17px;margin:8px 0 8px;}
+.ucard p{font-size:14px;color:var(--ink);line-height:1.5;}
+
+/* ecosystem band / block */
+.eco{display:flex;align-items:center;justify-content:center;gap:34px 40px;flex-wrap:wrap;}
+.eco img{height:26px;width:auto;object-fit:contain;}
+.eco span{color:#fff;font-family:var(--sans);font-weight:700;font-size:15px;}
+
+/* service icons grid (slide 12 / 17) */
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px;}
+.svc .it{display:flex;gap:12px;align-items:flex-start;}
+.svc .it .ic{flex:0 0 42px;height:42px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.svc .it h4{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.3px;}
+.svc .it p{font-size:11.5px;color:var(--mid);line-height:1.35;margin-top:3px;}
+
+/* domain chips (slide 13) */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+.chip{display:flex;align-items:center;gap:9px;background:var(--gray);border-radius:24px;padding:8px 14px 8px 8px;}
+.chip .ic{width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;}
+.chip span{font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--ink);}
+
+/* "imprimeur" blocs (slides 14-16) */
+.redband{position:absolute;left:0;right:0;top:0;height:74px;background:var(--red);display:flex;align-items:center;padding:0 64px;}
+.redband h2{font-family:var(--sans);color:#fff;font-weight:700;font-size:21px;letter-spacing:.3px;}
+.blocs{position:absolute;left:64px;right:64px;top:108px;bottom:46px;display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+.bloc{position:relative;background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.10);padding:26px 26px;display:flex;flex-direction:column;justify-content:center;}
+.bloc .badge{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--sans);font-weight:700;font-size:15px;}
+.bloc h3{font-family:var(--sans);font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:.4px;display:inline-block;border-bottom:2px solid currentColor;padding-bottom:3px;margin-bottom:16px;}
+.bloc ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.bloc li{position:relative;padding-left:22px;font-size:14px;color:var(--ink);line-height:1.4;}
+.bloc li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--red);}
+
+/* galleries (slides 18-19) */
+.gal{position:absolute;left:64px;right:64px;top:96px;bottom:64px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:20px 22px;}
+.ph{background:var(--gray);border:1px dashed #d6d6d8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+.ph .ico{font-size:30px;opacity:.5;}
+.ph .lb{font-family:var(--sans);font-weight:700;font-size:13px;color:var(--ink);}
+.galnote{position:absolute;left:0;right:0;bottom:26px;text-align:center;}
+
+/* footer (slides 13/17) */
+.foot{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-family:var(--sans);font-size:9px;color:#9a9a9a;line-height:1.4;padding:0 40px;}
+
+/* eyebrow / centered helpers */
+.center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 90px;}
+
+/* ===================== NAV ===================== */
+#nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);padding:7px 14px;border-radius:30px;z-index:1000;}
+#nav button{background:none;border:1.5px solid rgba(255,255,255,.28);color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-family:Arial,sans-serif;transition:background .15s;}
+#nav button:hover{background:rgba(255,255,255,.16);}
+#counter{color:rgba(255,255,255,.65);font-size:12px;min-width:54px;text-align:center;}
+#fullbtn{border:none!important;color:rgba(255,255,255,.55)!important;font-size:17px;line-height:1;padding:2px 6px!important;}
+#fullbtn:hover{color:#fff!important;}
 </style>
 </head>
 <body>
-  <div class="k">MBE PRINT &amp; MARKETING</div>
-  <h1>Graphisme &amp; Impression</h1>
-  <p>Deck en préparation — le contenu arrive très bientôt.</p>
-  <a href="../">← Retour aux présentations MBE</a>
+<div id="deck"><div id="stage">
+
+<!-- ============ 1 — TITRE ============ -->
+<section class="slide dark active">
+  <div class="brand"></div>
+  <div class="pane wide">
+    <h1 class="t" style="font-size:44px;">Et si votre centre MBE<br>faisait aussi parler de vous&nbsp;?</h1>
+    <div class="accroche" style="font-size:20px;margin-top:22px;">Impression · Objets publicitaires · Graphisme</div>
+  </div>
+  <div class="media"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/2fab6fd4f38ec7226e4b449c766df723_Illustration_Print%20%281%29.png" alt="Imprimante MBE"></div>
+  <div class="peop" style="position:absolute;left:64px;bottom:34px;font-size:13px;color:#bdbdbd;">#PeoplePossible</div>
+</section>
+
+<!-- ============ 2 — L'HISTOIRE ============ -->
+<section class="slide">
+  <div class="brand"></div>
+  <div class="pane wide">
+    <h2 class="t" style="font-size:36px;">MBE, bien plus que l'expédition</h2>
+    <p class="body" style="margin-top:18px;font-size:15px;">MBE simplifie la vie des professionnels depuis toujours&nbsp;: emballer, expédier, stocker…</p>
+    <p class="body" style="margin-top:12px;font-size:15px;">Mais nos clients ont aussi besoin de se rendre visibles&nbsp;: préparer un événement, participer à un salon, ouvrir une boutique, personnaliser leurs envois.</p>
+    <p class="body" style="margin-top:12px;font-size:15px;">Nous avons développé une offre impression complète pour y répondre — du petit format au grand format, en passant par les objets publicitaires.</p>
+    <a class="btn" style="margin-top:22px;align-self:flex-start;" href="https://youtu.be/xkfvNPpZi40" target="_blank" rel="noopener">▶ Voir la vidéo</a>
+  </div>
+  <div class="media"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/7573491c5cb577bb82af9707425846f1_Illustration_Print%20%282%29.png" alt="Univers MBE"></div>
+</section>
+
+<!-- ============ 3 — PETIT FORMAT ============ -->
+<section class="slide">
+  <div class="brand"></div>
+  <div class="pane">
+    <h2 class="t" style="font-size:36px;">Du détail qui fait la différence</h2>
+    <div class="accroche" style="font-size:18px;margin-top:12px;">Impression petit format</div>
+    <ul class="plist">
+      <li>Cartes de visite</li>
+      <li>Flyers &amp; prospectus</li>
+      <li>Brochures &amp; dépliants</li>
+      <li>Affiches (A4 → A0)</li>
+      <li>Étiquettes &amp; autocollants</li>
+      <li>Documents reliés &amp; plastifiés</li>
+    </ul>
+  </div>
+  <div class="media"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1169da63afed285ca4f28230e32fce1b_Illustration_Print%20%289%29.png" alt="Flyers, affiches, cartes de visite"></div>
+</section>
+
+<!-- ============ 4 — GRAND FORMAT ============ -->
+<section class="slide">
+  <div class="brand"></div>
+  <div class="pane">
+    <h2 class="t" style="font-size:36px;">Marquez l'espace,<br>marquez les esprits</h2>
+    <div class="accroche" style="font-size:18px;margin-top:12px;">Impression grand format &amp; signalétique</div>
+    <ul class="plist">
+      <li>Roll-ups &amp; kakémonos</li>
+      <li>Bâches &amp; banderoles</li>
+      <li>Adhésifs &amp; vitrophanies</li>
+      <li>Panneaux &amp; PLV</li>
+      <li>Flammes &amp; oriflammes</li>
+      <li>Signalétique d'événement</li>
+    </ul>
+  </div>
+  <div class="media"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/6a9322f6f9b4542cd27a9adb8717e409_Illustration_Print%20%2810%29.png" alt="Stand salon"></div>
+</section>
+
+<!-- ============ 5 — OBJETS PUBLICITAIRES ============ -->
+<section class="slide">
+  <div class="brand"></div>
+  <div class="pane wide">
+    <h2 class="t" style="font-size:34px;">Votre marque dans les mains de vos clients</h2>
+    <div class="accroche" style="font-size:17px;margin-top:10px;">Objets publicitaires &amp; goodies — via nos partenaires</div>
+    <p class="body" style="margin-top:14px;font-size:14.5px;">Prolongez votre image de marque au-delà du papier. Votre centre MBE accède à un large catalogue d'objets personnalisables pour tous vos événements et campagnes de communication.</p>
+    <ul class="plist two" style="margin-top:18px;">
+      <li>Tote bags</li><li>Stylos &amp; crayons</li>
+      <li>Mugs &amp; gourdes</li><li>Clés USB</li>
+      <li>T-shirts &amp; polos</li><li>Carnets &amp; agendas</li>
+      <li>Badges &amp; lanyards</li><li>Et bien d'autres…</li>
+    </ul>
+  </div>
+  <div class="media" style="width:480px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/9e3fc41281498f686dfc02e2e4b504b8_Illustration_Print%20%286%29.png" alt="Goodies brandés"></div>
+</section>
+
+<!-- ============ 6 — CONSEILS ============ -->
+<section class="slide">
+  <div class="brand"></div>
+  <div class="pane" style="width:560px;">
+    <h2 class="t" style="font-size:34px;">Les bons réflexes avant d'imprimer</h2>
+    <div class="tips">
+      <div class="tip"><div class="ic">🖨️</div><div class="tx"><h4>Qualité fichier</h4><p>Minimum 300 dpi pour une impression nette. Un fichier basse résolution donnera un résultat flou.</p></div></div>
+      <div class="tip"><div class="ic">📐</div><div class="tx"><h4>Fond perdu</h4><p>Prévoir 3 mm au-delà du format final pour éviter les bordures blanches après découpe.</p></div></div>
+      <div class="tip"><div class="ic">✂️</div><div class="tx"><h4>Traits de coupe</h4><p>À inclure ou non selon le support. En cas de doute, demandez à votre centre MBE.</p></div></div>
+      <div class="tip"><div class="ic">🎨</div><div class="tx"><h4>Colorimétrie</h4><p>Travailler en CMJN et non en RVB. Les couleurs écran ne s'impriment pas de la même façon.</p></div></div>
+      <div class="tip"><div class="ic">📄</div><div class="tx"><h4>Format de fichier</h4><p>Le PDF print-ready est le format recommandé pour garantir la conformité de votre fichier.</p></div></div>
+    </div>
+  </div>
+  <div class="media" style="width:430px;right:48px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/831c55ec0cf656b23da1d778739bc119_Illustration_Print%20%287%29.png" alt="Prêt à imprimer"></div>
+</section>
+
+<!-- ============ 7 — CAS D'USAGE ============ -->
+<section class="slide softg">
+  <div class="brand"></div>
+  <h2 class="t" style="position:absolute;top:54px;left:0;right:0;text-align:center;font-size:32px;">MBE en action</h2>
+  <div class="cards2">
+    <div class="ucard">
+      <div class="uimg"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/5a712972fa745f176940c76901f24b45_Illustration_Print%20%285%29.png" alt="Événement"></div>
+      <h3>🪧 Préparer un événement</h3>
+      <p>Roll-ups, kakémonos, flyers, badges, goodies… Tout ce qu'il faut pour être visible et professionnel le jour J.</p>
+    </div>
+    <div class="ucard">
+      <div class="uimg"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/886688595f398372721084da8e148937_Illustration_Print%20%284%29.png" alt="Colis personnalisé"></div>
+      <h3>📦 Personnaliser ses expéditions</h3>
+      <p>Cartes de remerciement, inserts personnalisés, stickers… glissés directement dans vos colis par votre centre MBE.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 — GRAPHISME ============ -->
+<section class="slide">
+  <div class="brand"></div>
+  <div class="pane wide">
+    <h2 class="t" style="font-size:36px;">Besoin d'aide sur vos fichiers&nbsp;?</h2>
+    <div class="accroche" style="font-size:18px;margin-top:10px;">Le graphisme, en soutien de votre impression</div>
+    <p class="body" style="margin-top:16px;font-size:15px;">Votre centre MBE peut vous accompagner à chaque étape de la création&nbsp;:</p>
+    <ul class="checks" style="margin-top:12px;">
+      <li>Création de logo et identité visuelle</li>
+      <li>Mise en page de vos supports</li>
+      <li>Adaptation et retouche de fichiers existants</li>
+      <li>Préparation de fichiers print-ready</li>
+    </ul>
+    <p class="body" style="margin-top:10px;font-size:15px;"><b>Pas encore de fichiers prêts&nbsp;?</b> Nous nous occupons de tout.</p>
+  </div>
+  <div class="media" style="width:500px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/3a0c995dc81d11e9a88333e7af1df17b_Illustration_Print%20%283%29.png" alt="Esquisse vers affiche"></div>
+</section>
+
+<!-- ============ 9 — CTA ============ -->
+<section class="slide dark">
+  <div class="center" style="justify-content:flex-start;padding-top:74px;">
+    <h2 class="t" style="font-size:40px;">Votre centre MBE,<br>votre partenaire impression local</h2>
+    <div class="accroche" style="font-size:20px;margin-top:20px;">Un interlocuteur unique. De l'idée à la livraison.</div>
+    <p class="body" style="margin-top:16px;font-size:16px;max-width:760px;">Impression petit &amp; grand format · Objets publicitaires<br>Graphisme · Expédition intégrée</p>
+    <a class="btn" style="margin-top:26px;font-size:16px;padding:14px 26px;" href="#">Parlons de votre prochain projet →</a>
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:0;height:120px;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:14px;gap:11px;">
+    <div class="cap" style="color:#999;letter-spacing:1px;">L'ÉCOSYSTÈME MBE</div>
+    <div class="eco">
+      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/869529672bb0a62b5cbe2fe88cd53865_MBE_eShip%20White.png" alt="MBE eShip">
+      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/577887104073222ee68d1be014e1f209_MBE%20Fulfillment_Negative.png" alt="MBE Fulfillment">
+      <img src="https://auction.mbeglobal.com/images/logo-white.png" alt="MBE Auction">
+      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/22609fb0fdaa2ac8cde93a7aac1f303a_MBE%20Wine%20Logo_Neg.png" alt="MBE Wine">
+      <span>MBE Packing</span><span>MBE Shipping</span><span>MBE OnLine</span><span>MBE SafeValue</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- ====== SLIDES 10-21 — SPÉCIFIQUES MBE CHOLET ======== -->
+<!-- ====== (data-cholet : retirer pour version réseau) == -->
+<!-- ===================================================== -->
+
+<!-- ============ 10 — TITRE CHOLET ============ -->
+<section class="slide reds" data-cholet>
+  <div class="brand circ"></div>
+  <div style="position:absolute;left:72px;top:96px;right:72px;">
+    <h2 class="t" style="font-size:72px;letter-spacing:1px;">BIENVENUE</h2>
+    <div style="font-family:var(--sans);font-weight:700;font-size:22px;color:#fff;margin-top:14px;line-height:1.3;">à la 6ème édition du Before Work chez<br>Mail Boxes Etc. Cholet</div>
+    <div style="display:inline-block;background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:700;font-size:26px;line-height:1.25;border-radius:14px;padding:22px 30px;margin-top:34px;">AUJOURD'HUI PARLONS<br>GRAPHISME &amp; IMPRESSION</div>
+  </div>
+  <div class="peop" style="position:absolute;right:46px;bottom:30px;font-size:13px;color:#ffd1d6;">#PeoplePossible</div>
+</section>
+
+<!-- ============ 11 — MBE FRANCE ============ -->
+<section class="slide" data-cholet>
+  <div class="redband"><h2 style="font-family:var(--serif);font-size:30px;">Mail Boxes Etc.</h2></div>
+  <div style="position:absolute;left:64px;top:120px;width:560px;">
+    <p class="body" style="color:var(--red);font-size:15px;">Mail Boxes Etc. (MBE) est un réseau international de centres de proximité dédiés aux entreprises et aux particuliers.</p>
+    <p class="body" style="color:var(--red);font-size:15px;margin-top:12px;">Le réseau MBE c'est <b>1&nbsp;910 centres</b> de solutions d'affaires répartis dans <b>58&nbsp;pays</b>.</p>
+    <p class="body" style="color:var(--red);font-size:15px;margin-top:12px;">Chaque jour, des centaines d'entrepreneurs passionnés de MBE incarnent la mission #PeoplePossible&nbsp;: créer des solutions sur mesure qui transforment les défis professionnels et personnels de leurs clients en objectifs concrets.</p>
+  </div>
+  <div style="position:absolute;right:48px;top:120px;width:480px;display:flex;flex-direction:column;align-items:center;">
+    <div class="t" style="font-size:34px;color:var(--ink);">#PeoplePossible</div>
+    <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/7573491c5cb577bb82af9707425846f1_Illustration_Print%20%282%29.png" alt="MBE monde" style="max-width:100%;max-height:340px;object-fit:contain;margin-top:10px;">
+  </div>
+</section>
+
+<!-- ============ 12 — MISSION & RÉSEAU ============ -->
+<section class="slide" data-cholet>
+  <div class="brand"></div>
+  <div style="position:absolute;left:64px;top:60px;width:560px;">
+    <h2 class="t" style="font-size:32px;color:var(--red);">Notre mission&nbsp;?</h2>
+    <p class="body" style="font-size:14.5px;margin-top:14px;">Accompagner les professionnels et les entrepreneurs dans leur croissance, en leur offrant des services clé en main pour expédier, imprimer et gérer leurs besoins logistiques en toute simplicité.</p>
+    <p class="body" style="font-size:14.5px;margin-top:12px;">Grâce à des partenariats stratégiques, nous permettons à nos clients de se concentrer sur ce qu'ils font de mieux&nbsp;: développer leur activité.</p>
+    <div class="t" style="font-size:48px;color:var(--red);margin-top:24px;">106 Centres</div>
+  </div>
+  <div class="svc" style="position:absolute;right:54px;top:84px;width:500px;">
+    <div class="it"><div class="ic">📦</div><div><h4>Emballage &amp; Expédition</h4><p>Nous emballons, expédions et livrons partout dans le monde.</p></div></div>
+    <div class="it"><div class="ic">✏️</div><div><h4>Graphisme &amp; Impression</h4><p>Nous donnons vie à vos idées et imprimons tous vos supports.</p></div></div>
+    <div class="it"><div class="ic">📬</div><div><h4>Domiciliation &amp; B.A.L.</h4><p>Une adresse prestigieuse et des solutions de gestion du courrier.</p></div></div>
+    <div class="it"><div class="ic">🛒</div><div><h4>Fournitures &amp; autres</h4><p>Tout le nécessaire pour votre quotidien professionnel, au même endroit.</p></div></div>
+  </div>
+</section>
+
+<!-- ============ 13 — CENTRE CHOLET ============ -->
+<section class="slide" data-cholet>
+  <div class="brand"></div>
+  <div style="position:absolute;left:64px;top:54px;right:64px;">
+    <h2 class="t" style="font-size:34px;color:var(--red);">Mail Boxes Etc. — Cholet</h2>
+    <div class="accroche" style="color:var(--ink);font-size:18px;margin-top:4px;">Votre centre de proximité</div>
+  </div>
+  <div style="position:absolute;left:64px;top:150px;width:440px;">
+    <p class="body" style="font-size:15px;"><b>Ouverture&nbsp;:</b> fin novembre 2022</p>
+    <p class="body" style="font-size:15px;margin-top:10px;"><b>Nos clients&nbsp;:</b> B2C &amp; B2B</p>
+    <p class="body" style="font-size:15px;margin-top:10px;">Nous accompagnons plus de <b>60 clients professionnels</b> sur le territoire Choletais et les alentours, dans différents domaines d'activité&nbsp;:</p>
+  </div>
+  <div class="chips" style="position:absolute;right:54px;top:150px;width:560px;">
+    <div class="chip"><div class="ic">🛒</div><span>E-commerce</span></div>
+    <div class="chip"><div class="ic">🏭</div><span>Industriel</span></div>
+    <div class="chip"><div class="ic">🤝</div><span>Associations</span></div>
+    <div class="chip"><div class="ic">🎨</div><span>Peintres &amp; artistes</span></div>
+    <div class="chip"><div class="ic">🎓</div><span>Écoles &amp; établissements</span></div>
+    <div class="chip"><div class="ic">💼</div><span>Professions libérales</span></div>
+    <div class="chip"><div class="ic">🏪</div><span>Commerces</span></div>
+    <div class="chip"><div class="ic">🔨</div><span>Salles des ventes</span></div>
+    <div class="chip"><div class="ic">👤</div><span>Indépendants &amp; freelances</span></div>
+    <div class="chip"><div class="ic">➕</div><span>Et bien d'autres…</span></div>
+  </div>
+  <div class="foot">© 2025 Mail Boxes Etc. — une entreprise Fortidia. Ce document contient des informations confidentielles. Sa reproduction et sa distribution ne sont pas autorisées.</div>
+</section>
+
+<!-- ============ 14 — IMPRIMEUR 1/2 ============ -->
+<section class="slide grayb" data-cholet>
+  <div class="redband"><h2>MBE CHOLET — BIEN PLUS QU'UN IMPRIMEUR&nbsp;!</h2></div>
+  <div class="blocs">
+    <div class="bloc">
+      <div class="badge" style="background:var(--navy);">01</div>
+      <h3 style="color:var(--navy);">Un interlocuteur unique</h3>
+      <ul>
+        <li>Gestion complète du projet de A à Z</li>
+        <li>Création graphique, mise en page et vérifications des fichiers</li>
+        <li>Impressions, finitions et LIVRAISON</li>
+      </ul>
+    </div>
+    <div class="bloc">
+      <div class="badge" style="background:var(--orange);">02</div>
+      <h3 style="color:var(--orange);">Conseil et accompagnement</h3>
+      <ul>
+        <li>Échanges directs avec une équipe de proximité</li>
+        <li>Aide au choix des formats, papiers, quantités, finitions et délais</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15 — IMPRIMEUR 2/2 ============ -->
+<section class="slide grayb" data-cholet>
+  <div class="redband"><h2>MBE CHOLET — BIEN PLUS QU'UN IMPRIMEUR</h2></div>
+  <div class="blocs">
+    <div class="bloc">
+      <div class="badge" style="background:var(--navy);">03</div>
+      <h3 style="color:var(--navy);">Réactivité et flexibilité</h3>
+      <ul>
+        <li>Cartes de visite</li>
+        <li>Flyers</li>
+        <li>Affiches</li>
+        <li>Brochures</li>
+        <li>Documents administratifs</li>
+      </ul>
+    </div>
+    <div class="bloc">
+      <div class="badge" style="background:var(--beige);">04</div>
+      <h3 style="color:var(--beige);">Services de façonnages</h3>
+      <ul>
+        <li>Reliure</li>
+        <li>Plastification</li>
+        <li>Numérisation</li>
+        <li>Finitions diverses</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16 — IMPRESSION + EXPÉDITION ============ -->
+<section class="slide grayb" data-cholet>
+  <div class="redband"><h2>MBE CHOLET — BIEN PLUS QU'UN IMPRIMEUR</h2></div>
+  <div style="position:absolute;left:120px;right:120px;top:150px;bottom:60px;background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.12);padding:34px 44px;display:flex;align-items:center;gap:30px;">
+    <div style="flex:1;position:relative;">
+      <div class="bloc" style="box-shadow:none;padding:0;background:transparent;">
+        <div class="badge" style="background:var(--navy);position:static;margin-bottom:14px;">05</div>
+        <h3 style="color:var(--red);">Impression + expédition intégrée</h3>
+        <ul>
+          <li>Préparation des colis</li>
+          <li>Emballage</li>
+          <li>Expédition en France et à l'international</li>
+        </ul>
+      </div>
+    </div>
+    <div style="flex:0 0 320px;height:260px;display:flex;align-items:center;justify-content:center;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/886688595f398372721084da8e148937_Illustration_Print%20%284%29.png" alt="Colis personnalisé" style="max-width:100%;max-height:100%;object-fit:contain;"></div>
+  </div>
+</section>
+
+<!-- ============ 17 — NOS SOLUTIONS ============ -->
+<section class="slide" data-cholet>
+  <h2 class="t" style="position:absolute;top:46px;left:0;right:0;text-align:center;font-size:38px;color:var(--red);">Nos solutions d'impression &amp; de graphisme</h2>
+  <div style="position:absolute;left:64px;right:64px;top:130px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;height:230px;">
+    <div style="background:var(--gray);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:14px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1169da63afed285ca4f28230e32fce1b_Illustration_Print%20%289%29.png" style="max-width:100%;max-height:100%;object-fit:contain;" alt=""></div>
+    <div style="background:var(--gray);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:14px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/3a0c995dc81d11e9a88333e7af1df17b_Illustration_Print%20%283%29.png" style="max-width:100%;max-height:100%;object-fit:contain;" alt=""></div>
+    <div style="background:var(--gray);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:14px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/831c55ec0cf656b23da1d778739bc119_Illustration_Print%20%287%29.png" style="max-width:100%;max-height:100%;object-fit:contain;" alt=""></div>
+  </div>
+  <div style="position:absolute;left:64px;right:64px;bottom:70px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
+    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">🖊️</div><div class="cap" style="font-weight:700;color:var(--ink);font-size:12px;">Création graphique</div></div>
+    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">🖨️</div><div class="cap" style="font-weight:700;color:var(--ink);font-size:12px;">Impression tous formats</div></div>
+    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">📃</div><div class="cap" style="font-weight:700;color:var(--ink);font-size:12px;">Supports de communication</div></div>
+    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">📐</div><div class="cap" style="font-weight:700;color:var(--ink);font-size:12px;">Finitions &amp; façonnage</div></div>
+  </div>
+  <div class="foot">© 2025 Mail Boxes Etc. — une entreprise Fortidia.</div>
+</section>
+
+<!-- ============ 18 — GALERIE 1 ============ -->
+<section class="slide" data-cholet>
+  <div class="brand"></div>
+  <div class="gal">
+    <div class="ph"><div class="ico">📄</div><div class="lb">Flyer</div></div>
+    <div class="ph"><div class="ico">💌</div><div class="lb">Carte de vœux</div></div>
+    <div class="ph"><div class="ico">🪧</div><div class="lb">Affiche adhésive</div></div>
+    <div class="ph"><div class="ico">🍾</div><div class="lb">Limonadier</div></div>
+    <div class="ph"><div class="ico">🏷️</div><div class="lb">Étiquette</div></div>
+    <div class="ph"><div class="ico">📰</div><div class="lb">Affiche</div></div>
+  </div>
+  <div class="galnote cap">Réalisations du Centre MBE Cholet — remplacer par vos propres exemples</div>
+</section>
+
+<!-- ============ 19 — GALERIE 2 ============ -->
+<section class="slide" data-cholet>
+  <div class="brand"></div>
+  <div class="gal">
+    <div class="ph"><div class="ico">🧥</div><div class="lb">Broderie sur veste</div></div>
+    <div class="ph"><div class="ico">🖊️</div><div class="lb">Gravure sur stylo</div></div>
+    <div class="ph"><div class="ico">💳</div><div class="lb">Carte de visite</div></div>
+    <div class="ph"><div class="ico">🎁</div><div class="lb">Chèque cadeau</div></div>
+    <div class="ph"><div class="ico">🛍️</div><div class="lb">Tote Bag</div></div>
+    <div class="ph"><div class="ico">🔖</div><div class="lb">Tampon</div></div>
+  </div>
+  <div class="galnote cap">Réalisations du Centre MBE Cholet — remplacer par vos propres exemples</div>
+</section>
+
+<!-- ============ 20 — ÉCOSYSTÈME ============ -->
+<section class="slide" data-cholet>
+  <div class="brand"></div>
+  <div style="position:absolute;left:64px;top:54px;">
+    <h2 class="t" style="font-size:32px;">Nos services</h2>
+    <div class="accroche" style="font-size:18px;margin-top:6px;">Une aide 360° pour les entrepreneurs</div>
+  </div>
+  <div style="position:absolute;left:120px;right:120px;top:150px;bottom:54px;background:var(--dark);border-radius:18px;padding:30px 44px;display:flex;flex-direction:column;justify-content:center;gap:22px;">
+    <div class="cap" style="color:#bbb;">Solutions logistiques</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px 40px;align-items:center;">
+      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/869529672bb0a62b5cbe2fe88cd53865_MBE_eShip%20White.png" alt="MBE eShip" style="height:30px;width:auto;object-fit:contain;justify-self:start;">
+      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/577887104073222ee68d1be014e1f209_MBE%20Fulfillment_Negative.png" alt="MBE Fulfillment" style="height:30px;width:auto;object-fit:contain;justify-self:start;">
+      <img src="https://auction.mbeglobal.com/images/logo-white.png" alt="MBE Auction" style="height:30px;width:auto;object-fit:contain;justify-self:start;">
+      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/22609fb0fdaa2ac8cde93a7aac1f303a_MBE%20Wine%20Logo_Neg.png" alt="MBE Wine" style="height:30px;width:auto;object-fit:contain;justify-self:start;">
+      <span style="color:#fff;font-weight:700;font-size:16px;">MBE Packing</span>
+      <span style="color:#fff;font-weight:700;font-size:16px;">MBE Shipping</span>
+      <span style="color:#fff;font-weight:700;font-size:16px;">MBE OnLine</span>
+      <span style="color:#fff;font-weight:700;font-size:16px;">MBE SafeValue</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 21 — MERCI ============ -->
+<section class="slide" data-cholet>
+  <div class="brand"></div>
+  <div class="pane wide">
+    <h2 class="t" style="font-size:40px;color:var(--red);">Merci de votre attention&nbsp;!</h2>
+    <div style="font-family:var(--sans);font-weight:700;font-style:italic;font-size:24px;color:var(--red);margin-top:18px;line-height:1.3;">Échangeons davantage<br>autour d'un café&nbsp;!</div>
+    <div class="peop" style="margin-top:24px;font-size:13px;color:var(--mid);">#PeoplePossible</div>
+  </div>
+  <div class="media" style="width:440px;"><div style="width:360px;height:300px;background:var(--gray);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:90px;">☕</div></div>
+</section>
+
+</div></div>
+
+<div id="progress"></div>
+<div id="nav">
+  <button onclick="go(-1)">← Préc.</button>
+  <span id="counter">1 / 21</span>
+  <button onclick="go(1)">Suiv. →</button>
+  <button id="fullbtn" onclick="toggleFull()" title="Plein écran (F)">⛶</button>
+</div>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const total=slides.length;
+let cur=0;
+function show(n){slides[cur].classList.remove('active');cur=((n%total)+total)%total;slides[cur].classList.add('active');document.getElementById('counter').textContent=(cur+1)+' / '+total;document.getElementById('progress').style.width=((cur+1)/total*100)+'%';}
+function go(d){show(cur+d);}
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();go(1);}
+  if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();go(-1);}
+  if(e.key.toLowerCase()==='f')toggleFull();
+});
+function toggleFull(){if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});else document.exitFullscreen();}
+const stage=document.getElementById('stage');
+function resize(){const s=Math.min(window.innerWidth/1200,window.innerHeight/675);stage.style.transform='scale('+s+')';}
+window.addEventListener('resize',resize);
+resize();
+const _q=parseInt(new URLSearchParams(location.search).get('s'),10);
+show(Number.isFinite(_q)?_q-1:0);
+</script>
 </body>
 </html>
