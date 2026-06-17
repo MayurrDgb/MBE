@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
   DECK : MBE Cholet — 5e Before Work · Graphisme & Impression
-  Reconstruction premium de la présentation originale (33 slides) en respectant leur chronologie.
-  Charté MBE · FR · quiz interactifs sonorisés · cartes joueurs (équipe) aux transitions.
+  Design : premium bordeaux (tons #E2001A → bordeaux → noir), style page produit.
+  Chronologie fidèle au PDF original · quiz interactifs sonorisés (bravo / arrrf) · cartes joueurs aux transitions.
   Permalien slide : ?s=N
 -->
 <html lang="fr">
@@ -11,170 +11,189 @@
 <meta name="color-scheme" content="light only">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MBE Cholet — 5e Before Work · Graphisme &amp; Impression</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --red:#E2001A; --ink:#1A1A1A; --white:#FFFFFF;
-  --anthra:#2D2D2D; --dark:#1A1A1A; --gray:#F4F4F4; --gray-blue:#F0F2F5;
-  --mid:#666666; --cream:#F5F0E8; --green:#2D8C4E;
-  --navy:#1B2A6B; --orange:#E8773A; --beige:#B79460;
+  --red:#E2001A; --bord:#8B0A16; --bord-deep:#3d0309; --night:#160609;
+  --ink:#1A1416; --paper:#FBF8F8; --muted-l:#7a7176; --line-l:#ECE6E7;
+  --gold:#C99A2E;
   --logo:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/227727a155bbcb301040aa648ff4841a_MBE%20Logo_complet%20avec%20swoosh%20et%20baseline.png");
   --logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1514c79aab9578f67e2a630281a77039_MBE_Logo_tr_Ver_NEG.png");
-  --serif:Cambria,Georgia,"Times New Roman",serif;
-  --sans:Calibri,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --logo-hor:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/b937bfd066e588115046799b8319602b_Mail%20Boxes%20Etc._Fortidia-Endorsement_RGB.png");
+  --f:Ubuntu,Arial,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var(--sans);color-scheme:light;}
+html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:var(--f);color-scheme:light;}
 #deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
-#stage{position:relative;width:1200px;height:675px;flex-shrink:0;overflow:hidden;transform-origin:center center;background:#fff;}
+#stage{position:relative;width:1200px;height:675px;flex-shrink:0;overflow:hidden;transform-origin:center center;background:var(--paper);}
 #progress{position:fixed;top:0;left:0;height:3px;background:var(--red);z-index:999;transition:width .3s ease;pointer-events:none;}
-.slide{position:absolute;inset:0;display:none;background:#fff;}
+
+.slide{position:absolute;inset:0;display:none;background:var(--paper);}
 .slide.active{display:block;}
-.slide.dark{background:var(--anthra);color:#fff;}
-.slide.grayb{background:var(--gray-blue);}
+.bord{background:radial-gradient(130% 120% at 20% -8%,#B00A18 0%,#6E0813 42%,#2a0509 74%,#160609 100%);color:#fff;}
+.night{background:#0c0608;color:#fff;}
 
 /* brand */
-.brand{position:absolute;top:24px;right:42px;width:120px;height:46px;background:var(--logo) right center/contain no-repeat;z-index:6;}
-.slide.dark .brand{background-image:var(--logo-neg);}
+.brand{position:absolute;top:26px;right:44px;width:118px;height:44px;background:var(--logo) right center/contain no-repeat;z-index:6;}
+.bord .brand,.night .brand{background-image:var(--logo-neg);}
 
-/* type */
-.t{font-family:var(--serif);font-weight:700;color:var(--ink);line-height:1.06;letter-spacing:-.4px;}
-.dark .t{color:#fff;}
-.accroche{font-family:var(--sans);font-weight:700;color:var(--red);line-height:1.25;}
-.body{font-family:var(--sans);font-weight:400;color:var(--ink);line-height:1.6;font-size:16px;}
-.dark .body{color:#CCCCCC;}
-.cap{font-family:var(--sans);font-size:11px;color:var(--mid);}
-.eyebrow{font-family:var(--sans);font-weight:700;letter-spacing:4px;font-size:12px;color:var(--red);}
-
-/* layout text+media */
-.pane{position:absolute;left:64px;top:0;bottom:0;width:500px;display:flex;flex-direction:column;justify-content:center;}
-.pane.wide{width:560px;}
-.media{position:absolute;right:34px;top:64px;bottom:54px;width:560px;display:flex;align-items:center;justify-content:center;}
-.media img{max-width:100%;max-height:100%;object-fit:contain;}
-
-/* lists */
-.plist{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:11px;}
-.plist.two{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;}
-.plist li{position:relative;padding-left:24px;font-size:15.5px;color:var(--ink);line-height:1.4;}
-.plist li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:50%;background:var(--red);}
-.checks{list-style:none;margin:14px 0;display:flex;flex-direction:column;gap:9px;}
-.checks li{position:relative;padding-left:26px;font-size:15px;color:var(--ink);line-height:1.4;}
-.checks li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--red);font-weight:700;}
-
-.btn{display:inline-flex;align-items:center;gap:9px;background:var(--red);color:#fff;font-family:var(--sans);font-weight:700;text-decoration:none;border-radius:30px;padding:13px 24px;font-size:15px;transition:transform .15s,box-shadow .15s;}
-.btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(226,0,26,.34);}
+/* type helpers */
+.eyebrow{font-family:var(--f);font-weight:700;letter-spacing:4px;font-size:12px;color:var(--red);display:flex;align-items:center;gap:12px;}
+.bord .eyebrow,.night .eyebrow{color:#fff;}
+.eyebrow .ln{display:inline-block;width:30px;height:2px;background:currentColor;opacity:.7;}
+.t{font-family:var(--f);font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-.6px;}
+.bord .t,.night .t{color:#fff;}
+.lead{font-family:var(--f);font-weight:400;color:var(--muted-l);line-height:1.6;font-size:16px;}
+.bord .lead{color:rgba(255,255,255,.78);}
+.accent{color:var(--red);}
+.bord .accent{color:#ff8a93;}
 
 /* ===== COVER ===== */
-.cover{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% -10%,#3a3a3a 0%,#222 45%,#141414 100%);overflow:hidden;}
-.cover .logo-c{position:absolute;top:28px;left:50%;transform:translateX(-50%);width:138px;height:46px;background:var(--logo-neg) center/contain no-repeat;}
-.cover .top{position:absolute;top:92px;left:0;right:0;text-align:center;padding:0 60px;}
-.cover .eye{color:var(--red);font-family:var(--sans);font-weight:700;letter-spacing:5px;font-size:13px;}
-.cover h1{font-family:var(--serif);font-weight:700;color:#fff;font-size:56px;line-height:1;letter-spacing:-.5px;margin-top:10px;}
-.cover h1 .num{color:var(--red);}
-.cover .acc{font-family:var(--sans);font-weight:700;color:#fff;font-size:18px;margin-top:14px;}
-.cover .acc b{color:var(--red);}
-.cover .peopc{position:absolute;left:50%;transform:translateX(-50%);top:186px;font-family:var(--sans);font-weight:700;font-size:12px;color:#9a9a9a;}
-.cards{position:absolute;left:0;right:0;bottom:-6px;display:flex;justify-content:center;align-items:flex-end;}
-.cards img{height:352px;width:auto;border-radius:13px;box-shadow:0 20px 44px rgba(0,0,0,.62);outline:2px solid rgba(255,255,255,.06);}
-.cards img:nth-child(1){transform:rotate(-9deg) translateY(15px);margin-right:-26px;z-index:1;}
-.cards img:nth-child(2){transform:rotate(-3deg) translateY(2px);margin-right:-26px;z-index:2;}
-.cards img:nth-child(3){transform:rotate(3deg) translateY(2px);margin-right:-26px;z-index:2;}
-.cards img:nth-child(4){transform:rotate(9deg) translateY(15px);z-index:1;}
+.cover{position:absolute;inset:0;overflow:hidden;}
+.cover .logo-c{position:absolute;top:30px;left:50%;transform:translateX(-50%);width:188px;height:60px;background:var(--logo-neg) center/contain no-repeat;}
+.cover .top{position:absolute;top:104px;left:0;right:0;text-align:center;padding:0 60px;}
+.cover .eye{color:#ff8a93;font-weight:700;letter-spacing:5px;font-size:13px;}
+.cover h1{font-weight:300;color:#fff;font-size:58px;line-height:1;letter-spacing:-1px;margin-top:12px;}
+.cover h1 b{font-weight:700;}
+.cover h1 .num{color:#fff;font-weight:700;}
+.cover .acc{font-weight:400;color:rgba(255,255,255,.9);font-size:19px;margin-top:16px;}
+.cover .acc b{color:#fff;font-weight:700;}
+.cards{position:absolute;left:0;right:0;bottom:34px;display:flex;justify-content:center;align-items:flex-end;}
+.cards img{height:338px;width:auto;border-radius:13px;box-shadow:0 22px 46px rgba(0,0,0,.6);outline:2px solid rgba(255,255,255,.07);}
+.cards img:nth-child(1){transform:rotate(-9deg) translateY(14px);margin-right:-24px;z-index:1;}
+.cards img:nth-child(2){transform:rotate(-3deg);margin-right:-24px;z-index:2;}
+.cards img:nth-child(3){transform:rotate(3deg);margin-right:-24px;z-index:2;}
+.cards img:nth-child(4){transform:rotate(9deg) translateY(14px);z-index:1;}
 
-/* ===== PROGRAMME ===== */
-.prog{position:absolute;left:64px;right:64px;top:128px;bottom:48px;display:flex;flex-direction:column;justify-content:space-between;}
-.pstep{display:flex;align-items:center;gap:18px;}
-.pstep .no{flex:0 0 38px;height:38px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:17px;}
-.pstep .tx{font-size:16px;color:var(--ink);} .pstep .tx b{color:var(--red);}
+/* ===== PROGRAMME (cartes) ===== */
+.phead{position:absolute;left:60px;top:50px;right:60px;}
+.pgrid{position:absolute;left:60px;right:60px;top:160px;bottom:46px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:16px;}
+.pcard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px 18px;position:relative;display:flex;flex-direction:column;gap:6px;backdrop-filter:blur(4px);}
+.pcard .pn{font-family:var(--f);font-weight:700;font-size:15px;color:#fff;background:var(--red);width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;}
+.pcard .pe{position:absolute;top:16px;right:16px;font-size:22px;opacity:.9;}
+.pcard .pt{font-size:14px;color:#fff;line-height:1.3;margin-top:6px;}
+.pcard .pp{font-size:12px;font-weight:700;color:#ff8a93;}
+.pcard.span2{grid-column:span 2;background:linear-gradient(120deg,rgba(226,0,26,.22),rgba(255,255,255,.05));}
 
 /* ===== VIDEO ===== */
-.yt{width:900px;height:506px;border:0;border-radius:14px;box-shadow:0 22px 50px rgba(0,0,0,.55);background:#000;}
+.ytwrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.yt{width:1080px;height:608px;border:0;border-radius:14px;box-shadow:0 26px 60px rgba(0,0,0,.6);background:#000;}
+.vidtag{position:absolute;top:18px;left:50%;transform:translateX(-50%);font-weight:700;letter-spacing:4px;font-size:11px;color:rgba(255,255,255,.5);z-index:5;}
 
-/* ===== TRANSITION (cartes joueurs) ===== */
+/* ===== TRANSITIONS (cartes joueurs) ===== */
 .tr-text{position:absolute;left:64px;top:0;bottom:0;width:560px;display:flex;flex-direction:column;justify-content:center;}
-.tr-cards{position:absolute;right:60px;top:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:-30px;}
-.tr-cards img{height:430px;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.5);outline:2px solid rgba(255,255,255,.06);}
-.tr-cards img:nth-child(2){margin-left:-46px;transform:rotate(5deg);}
+.tr-cards{position:absolute;right:64px;top:0;bottom:0;display:flex;align-items:center;justify-content:center;}
+.tr-cards img{height:432px;border-radius:14px;box-shadow:0 20px 44px rgba(0,0,0,.55);outline:2px solid rgba(255,255,255,.08);}
 .tr-cards img:nth-child(1){transform:rotate(-5deg);z-index:2;}
+.tr-cards img:nth-child(2){margin-left:-50px;transform:rotate(5deg);}
 
 /* ===== QUIZ ===== */
-.qwrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 90px;text-align:center;}
-.qnum{font-family:var(--sans);font-weight:700;letter-spacing:4px;font-size:13px;color:var(--red);}
-.qball{font-size:15px;}
-.qq{font-family:var(--serif);font-weight:700;font-size:34px;color:var(--ink);line-height:1.15;margin:14px 0 26px;max-width:880px;}
-.qopts{display:flex;flex-direction:column;gap:14px;width:100%;max-width:660px;}
-.qopt{font-family:var(--sans);font-size:18px;font-weight:500;color:var(--ink);background:#fff;border:2px solid #e2e2e4;border-radius:14px;padding:16px 22px;cursor:pointer;transition:border-color .15s,transform .12s,background .25s,color .25s;text-align:center;}
-.qopt:hover{border-color:var(--red);transform:translateY(-2px);}
-.qopt.dim{opacity:.4;}
-.qopt.good{background:var(--green);border-color:var(--green);color:#fff;animation:pop .4s ease;}
-.qopt.bad{background:var(--red);border-color:var(--red);color:#fff;animation:shake .4s ease;}
-.qopt.reveal{animation:pop .55s ease, glow 1s ease;}
-.qfeedback{margin-top:22px;font-family:var(--sans);font-weight:700;font-size:20px;min-height:26px;opacity:0;transition:opacity .2s;}
-.qfeedback.ok{color:var(--green);opacity:1;} .qfeedback.ko{color:var(--red);opacity:1;}
-@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
-@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
-@keyframes glow{0%{box-shadow:0 0 0 0 rgba(45,140,78,.55)}100%{box-shadow:0 0 0 18px rgba(45,140,78,0)}}
+.qwrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 100px;text-align:center;}
+.qnum{font-weight:700;letter-spacing:4px;font-size:13px;color:#ff8a93;}
+.qq{font-family:var(--f);font-weight:700;font-size:36px;color:#fff;line-height:1.16;margin:16px 0 30px;max-width:900px;letter-spacing:-.4px;}
+.qopts{display:flex;flex-direction:column;gap:14px;width:100%;max-width:680px;}
+.qopt{font-family:var(--f);font-size:18px;font-weight:500;color:#fff;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.28);border-radius:14px;padding:17px 24px;cursor:pointer;transition:all .15s;backdrop-filter:blur(3px);}
+.qopt:hover{border-color:#fff;background:rgba(255,255,255,.14);transform:translateY(-2px);}
+.qopt.dim{opacity:.35;}
+.qopt.good{background:#1f8a4c;border-color:#27a85c;color:#fff;animation:pop .45s ease;}
+.qopt.bad{background:var(--red);border-color:#ff4d5f;color:#fff;animation:shake .45s ease;}
+.qopt.reveal{animation:pop .55s ease, glow 1.1s ease;}
+.qfeedback{margin-top:26px;font-weight:700;font-size:24px;min-height:30px;opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s;}
+.qfeedback.show{opacity:1;transform:none;}
+.qfeedback.ok{color:#5fe08a;} .qfeedback.ko{color:#ff8a93;}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px)}40%{transform:translateX(9px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+@keyframes glow{0%{box-shadow:0 0 0 0 rgba(39,168,92,.6)}100%{box-shadow:0 0 0 20px rgba(39,168,92,0)}}
 
-/* ===== KPI / mission ===== */
-.svc{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px;}
-.svc .it{display:flex;gap:12px;align-items:flex-start;}
-.svc .it .ic{flex:0 0 42px;height:42px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;}
-.svc .it h4{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.3px;}
-.svc .it p{font-size:11.5px;color:var(--mid);line-height:1.35;margin-top:3px;}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
-.chip{display:flex;align-items:center;gap:9px;background:var(--gray);border-radius:24px;padding:8px 14px 8px 8px;}
-.chip .ic{width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;}
-.chip span{font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--ink);}
+/* ===== LIGHT content helpers ===== */
+.head{position:absolute;left:60px;top:52px;}
+.head .t{font-size:36px;}
+.col-mid{position:absolute;left:60px;right:60px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;}
 
-/* ===== imprimeur blocs ===== */
-.redband{position:absolute;left:0;right:0;top:0;height:74px;background:var(--red);display:flex;align-items:center;padding:0 64px;}
-.redband h2{font-family:var(--sans);color:#fff;font-weight:700;font-size:21px;letter-spacing:.3px;}
-.blocs{position:absolute;left:64px;right:64px;top:108px;bottom:46px;display:grid;grid-template-columns:1fr 1fr;gap:30px;}
-.bloc{position:relative;background:#fff;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.10);padding:26px;display:flex;flex-direction:column;justify-content:center;}
-.bloc .badge{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--sans);font-weight:700;font-size:15px;}
-.bloc h3{font-family:var(--sans);font-weight:700;font-size:16px;text-transform:uppercase;letter-spacing:.4px;display:inline-block;border-bottom:2px solid currentColor;padding-bottom:3px;margin-bottom:16px;}
-.bloc ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
-.bloc li{position:relative;padding-left:22px;font-size:14px;color:var(--ink);line-height:1.4;}
-.bloc li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--red);}
+/* stat numbers */
+.stat{font-family:var(--f);font-weight:700;color:var(--red);letter-spacing:-1px;}
 
-/* ===== tips ===== */
-.tips{display:grid;grid-template-columns:1fr 1fr;gap:16px 30px;margin-top:18px;}
-.tip{display:flex;gap:13px;align-items:flex-start;}
-.tip .ic{flex:0 0 38px;height:38px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;}
-.tip .tx h4{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.3px;}
-.tip .tx p{font-size:12px;color:var(--mid);line-height:1.4;margin-top:2px;}
+/* service cards (mission) */
+.scards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.scard{background:#fff;border:1px solid var(--line-l);border-radius:14px;padding:18px 20px;box-shadow:0 6px 18px rgba(0,0,0,.05);}
+.scard .ic{width:40px;height:40px;border-radius:11px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:10px;}
+.scard h4{font-size:13.5px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.3px;}
+.scard p{font-size:12px;color:var(--muted-l);line-height:1.4;margin-top:4px;}
 
-/* ===== galerie bleed ===== */
-.bleed{position:absolute;left:0;right:0;top:0;bottom:30px;width:100%;height:calc(100% - 30px);object-fit:contain;}
-.galnote{position:absolute;left:0;right:0;bottom:8px;text-align:center;}
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px;}
+.chip{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line-l);border-radius:24px;padding:8px 15px 8px 8px;box-shadow:0 4px 12px rgba(0,0,0,.04);}
+.chip .ic{width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.chip span{font-size:12.5px;font-weight:500;color:var(--ink);}
 
-/* ===== témoignage ===== */
-.temoi{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1.1fr;}
-.temoi .left{background:#000;display:flex;align-items:center;justify-content:center;}
-.temoi .left img{width:230px;height:230px;object-fit:contain;}
-.temoi .right{background:var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:40px;color:#fff;text-align:center;}
-.temoi .right .lbl{font-family:var(--sans);font-weight:700;letter-spacing:3px;font-size:13px;color:#ffd1d6;}
-.temoi .right h2{font-family:var(--serif);font-weight:700;font-size:40px;line-height:1.05;}
-.temoi .right .name{font-family:var(--sans);font-weight:700;font-size:18px;}
-.temoi .right .photo{width:180px;height:180px;border-radius:14px;object-fit:cover;box-shadow:0 12px 30px rgba(0,0,0,.4);border:3px solid #fff;}
+/* imprimeur blocs */
+.redband{position:absolute;left:0;right:0;top:0;height:78px;background:linear-gradient(90deg,#E2001A,#8B0A16);display:flex;align-items:center;padding:0 60px;}
+.redband h2{color:#fff;font-weight:700;font-size:22px;letter-spacing:.3px;}
+.blocs{position:absolute;left:60px;right:60px;top:112px;bottom:48px;display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.bloc{position:relative;background:#fff;border-radius:18px;box-shadow:0 12px 32px rgba(0,0,0,.10);padding:30px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line-l);}
+.bloc .badge{position:absolute;top:22px;right:22px;width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;background:linear-gradient(135deg,#E2001A,#8B0A16);}
+.bloc h3{font-weight:700;font-size:17px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--red);display:inline-block;}
+.bloc ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.bloc li{position:relative;padding-left:22px;font-size:14.5px;color:#3a3338;line-height:1.4;}
+.bloc li::before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;border-radius:50%;background:var(--red);}
 
-/* ===== services photos ===== */
-.photos3{position:absolute;left:64px;right:64px;top:200px;bottom:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
-.photos3 .ph{background:var(--gray);border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+/* lists */
+.plist{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.plist li{position:relative;padding-left:24px;font-size:15.5px;color:#3a3338;line-height:1.4;}
+.plist li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:50%;background:var(--red);}
+
+/* tips */
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:18px 30px;}
+.tip{display:flex;gap:14px;align-items:flex-start;}
+.tip .ic{flex:0 0 42px;height:42px;border-radius:12px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;}
+.tip h4{font-size:13.5px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.3px;}
+.tip p{font-size:12.5px;color:var(--muted-l);line-height:1.45;margin-top:3px;}
+
+/* galerie boards */
+.board{position:absolute;left:60px;right:60px;top:108px;bottom:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;padding:18px;box-shadow:0 18px 44px rgba(0,0,0,.4);}
+.board.lightb{background:#fff;}
+.board.darkb{background:#0c0608;border:1px solid rgba(255,255,255,.1);}
+.board img{max-width:100%;max-height:100%;object-fit:contain;}
+.galcap{position:absolute;left:60px;top:54px;}
+
+/* témoignage */
+.tphoto{position:absolute;left:80px;top:0;bottom:0;display:flex;align-items:center;}
+.tphoto img{width:340px;height:420px;object-fit:cover;border-radius:20px;box-shadow:0 22px 50px rgba(0,0,0,.5);border:3px solid rgba(255,255,255,.15);}
+.ttext{position:absolute;right:80px;left:480px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;}
+.zenchip{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:8px 18px 8px 8px;margin-top:18px;width:max-content;}
+.zenchip .zw{width:42px;height:42px;border-radius:50%;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.zenchip .zw img{width:34px;height:34px;object-fit:contain;}
+.zenchip span{font-weight:700;font-size:14px;color:#fff;letter-spacing:.5px;}
+
+/* services photos */
+.photos3{position:absolute;left:60px;right:60px;top:188px;bottom:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+.photos3 .ph{border-radius:14px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.12);}
 .photos3 .ph img{width:100%;height:100%;object-fit:cover;}
 
-/* ===== écosystème / transporteurs ===== */
-.eco{display:flex;align-items:center;justify-content:center;gap:30px 40px;flex-wrap:wrap;}
-.eco img{height:26px;width:auto;object-fit:contain;}
-.eco span{color:#fff;font-family:var(--sans);font-weight:700;font-size:15px;}
-.carriers{position:absolute;left:90px;right:90px;top:170px;bottom:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
-.carriers .cell{background:#fff;border:1px solid #ececee;border-radius:14px;display:flex;align-items:center;justify-content:center;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,.06);}
-.carriers .cell img{max-width:100%;max-height:62px;object-fit:contain;}
-.carriers .cell.txt{font-family:var(--sans);font-weight:700;font-size:24px;color:var(--ink);letter-spacing:.5px;}
+/* écosystème — grille de cartes */
+.eco-grid{position:absolute;left:60px;right:60px;top:160px;bottom:48px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:16px;}
+.ecard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:20px 18px;display:flex;flex-direction:column;justify-content:center;gap:8px;backdrop-filter:blur(4px);}
+.ecard .en{font-weight:700;font-size:17px;color:#fff;}
+.ecard .en b{color:#ff8a93;}
+.ecard .ed{font-size:11.5px;color:rgba(255,255,255,.62);line-height:1.4;}
 
-/* ===== merci word cloud ===== */
-.merci-cloud{position:absolute;left:0;right:0;top:96px;bottom:40px;width:100%;height:calc(100% - 136px);object-fit:contain;}
+/* transporteurs */
+.carriers{position:absolute;left:80px;right:80px;top:172px;bottom:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.carriers .cell{background:#fff;border:1px solid var(--line-l);border-radius:16px;display:flex;align-items:center;justify-content:center;padding:22px;box-shadow:0 8px 22px rgba(0,0,0,.07);}
+.carriers .cell img{max-width:100%;max-height:60px;object-fit:contain;}
+.carriers .cell.more{border-style:dashed;color:var(--muted-l);font-weight:700;font-size:13px;box-shadow:none;background:transparent;}
 
-/* ===== NAV ===== */
+/* résultat du jeu */
+.results{position:absolute;right:56px;top:60px;bottom:60px;width:620px;display:flex;flex-direction:column;justify-content:center;gap:12px;}
+.res{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-left:4px solid #27a85c;border-radius:12px;padding:13px 18px;color:#fff;font-size:14.5px;}
+.res b{color:#5fe08a;}
+
+/* merci */
+.merci{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 80px;}
+
+/* NAV */
 #nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);padding:7px 14px;border-radius:30px;z-index:1000;}
 #nav button{background:none;border:1.5px solid rgba(255,255,255,.28);color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-family:Arial,sans-serif;transition:background .15s;}
 #nav button:hover{background:rgba(255,255,255,.16);}
@@ -187,7 +206,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 <div id="deck"><div id="stage">
 
 <!-- 1 — PAGE DE GARDE -->
-<section class="slide active">
+<section class="slide bord active">
   <div class="cover">
     <div class="logo-c"></div>
     <div class="top">
@@ -195,7 +214,6 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
       <h1>Bienvenue à notre <span class="num">5<sup style="font-size:.5em;">e</sup></span> Before Work</h1>
       <div class="acc">Aujourd'hui, parlons <b>Graphisme &amp; Impression</b></div>
     </div>
-    <div class="peopc">#PeoplePossible</div>
     <div class="cards">
       <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/adba79bef7e3859730c56af98b3a5c19_Joueur%20ALEX%20PARPAILLON_FR3301.png" alt="Alex Parpaillon">
       <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/a8042d9f13b76ff4f297650dbbec264e_Joueur%20AUDE%20HUTEAU_FR3301.png" alt="Aude Huteau">
@@ -206,42 +224,38 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 </section>
 
 <!-- 2 — PROGRAMME -->
-<section class="slide">
+<section class="slide bord">
   <div class="brand"></div>
-  <div style="position:absolute;left:64px;top:50px;">
-    <div class="eyebrow">AU PROGRAMME</div>
-    <h2 class="t" style="font-size:34px;margin-top:8px;">Le déroulé du Before Work</h2>
+  <div class="phead">
+    <div class="eyebrow"><span class="ln"></span>LE DÉROULÉ</div>
+    <h2 class="t" style="font-size:36px;margin-top:10px;">Au programme de votre Before Work</h2>
   </div>
-  <div class="prog">
-    <div class="pstep"><div class="no">1</div><div class="tx"><b>Kaïna</b> donne le ton</div></div>
-    <div class="pstep"><div class="no">2</div><div class="tx"><b>Aude &amp; Wesley</b> vous parlent de Mail Boxes Etc. France &amp; Cholet</div></div>
-    <div class="pstep"><div class="no">3</div><div class="tx">On vous laisse <b>faire bonne impression</b> — le jeu 🎯</div></div>
-    <div class="pstep"><div class="no">4</div><div class="tx"><b>Baptiste Barbosa</b> partage son expérience client</div></div>
-    <div class="pstep"><div class="no">5</div><div class="tx"><b>Aude &amp; Kaïna</b> développent les solutions d'impression &amp; de graphisme</div></div>
-    <div class="pstep"><div class="no">6</div><div class="tx"><b>Wesley</b> présente les services complémentaires</div></div>
-    <div class="pstep"><div class="no">7</div><div class="tx"><b>Kaïna</b> donne le résultat du jeu !</div></div>
+  <div class="pgrid">
+    <div class="pcard"><div class="pn">1</div><div class="pe">🎬</div><div class="pt">Kaïna donne le ton</div><div class="pp">Kaïna</div></div>
+    <div class="pcard span2"><div class="pn">2</div><div class="pe">🌍</div><div class="pt">Mail Boxes Etc. France &amp; Cholet</div><div class="pp">Aude &amp; Wesley</div></div>
+    <div class="pcard"><div class="pn">3</div><div class="pe">🎯</div><div class="pt">On vous laisse faire bonne impression — le jeu</div><div class="pp">Tous</div></div>
+    <div class="pcard"><div class="pn">4</div><div class="pe">⭐</div><div class="pt">Expérience client</div><div class="pp">Baptiste Barbosa</div></div>
+    <div class="pcard"><div class="pn">5</div><div class="pe">🖨️</div><div class="pt">Les solutions d'impression &amp; graphisme</div><div class="pp">Aude &amp; Kaïna</div></div>
+    <div class="pcard"><div class="pn">6</div><div class="pe">📦</div><div class="pt">Les services complémentaires</div><div class="pp">Wesley</div></div>
+    <div class="pcard"><div class="pn">7</div><div class="pe">🏆</div><div class="pt">Le résultat du jeu !</div><div class="pp">Kaïna</div></div>
   </div>
 </section>
 
 <!-- 3 — VIDÉO -->
-<section class="slide dark">
-  <div class="brand"></div>
-  <div style="position:absolute;top:42px;left:0;right:0;text-align:center;">
-    <div style="color:var(--red);font-family:var(--sans);font-weight:700;letter-spacing:4px;font-size:12px;">MBE CHOLET · EN VIDÉO</div>
-    <h2 class="t" style="font-size:30px;margin-top:8px;">Découvrez MBE Cholet</h2>
-  </div>
-  <div style="position:absolute;left:0;right:0;top:120px;display:flex;justify-content:center;">
-    <iframe class="yt" src="https://www.youtube.com/embed/xkfvNPpZi40?rel=0&modestbranding=1" title="Service d'impression Mail Boxes Etc." allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+<section class="slide night">
+  <div class="vidtag">MBE · LA VIDÉO</div>
+  <div class="ytwrap">
+    <iframe class="yt" src="https://www.youtube.com/embed/xkfvNPpZi40?rel=0&modestbranding=1" title="MBE — vidéo impression" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
   </div>
 </section>
 
-<!-- 4 — TRANSITION : Kaïna donne le ton -->
-<section class="slide dark">
+<!-- 4 — TRANSITION : Kaïna -->
+<section class="slide bord">
   <div class="brand"></div>
   <div class="tr-text">
-    <div class="eyebrow">ÉTAPE 1</div>
-    <h2 class="t" style="font-size:46px;margin-top:10px;">Kaïna donne le ton</h2>
-    <p class="body" style="margin-top:16px;font-size:18px;color:#ddd;">On vous laisse <b style="color:var(--red);">faire bonne impression…</b><br>Place au jeu : 5 questions, à vous de voter !</p>
+    <div class="eyebrow"><span class="ln"></span>ÉTAPE 1</div>
+    <h2 class="t" style="font-size:48px;margin-top:12px;">Kaïna donne le ton</h2>
+    <p class="lead" style="margin-top:18px;font-size:19px;">On vous laisse <span class="accent" style="font-weight:700;">faire bonne impression…</span><br>Place au jeu&nbsp;: 5 questions, à vous de voter&nbsp;!</p>
   </div>
   <div class="tr-cards">
     <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/ee413880268ae423a2c44b6069127e3d_Joueur%20KAINA%20GODEY_FR3301.png" alt="Kaïna Godey">
@@ -249,26 +263,22 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 </section>
 
 <!-- 5 — QUIZ 1 -->
-<section class="slide">
+<section class="slide bord">
   <div class="brand"></div>
   <div class="qwrap">
-    <div class="qnum">QUIZ 1 / 5 <span class="qball">🎯</span></div>
-    <h2 class="qq">Combien de feuilles A6 peut-on placer dans un format A0 ?</h2>
-    <div class="qopts">
-      <button class="qopt">16</button>
-      <button class="qopt" data-correct>32</button>
-      <button class="qopt">64</button>
-    </div>
+    <div class="qnum">QUIZ 1 / 5 · 🎯</div>
+    <h2 class="qq">Combien de feuilles A6 peut-on placer dans un format A0&nbsp;?</h2>
+    <div class="qopts"><button class="qopt">16</button><button class="qopt" data-correct>32</button><button class="qopt">64</button></div>
     <div class="qfeedback"></div>
   </div>
 </section>
 
 <!-- 6 — QUIZ 2 -->
-<section class="slide">
+<section class="slide bord">
   <div class="brand"></div>
   <div class="qwrap">
-    <div class="qnum">QUIZ 2 / 5 <span class="qball">🎯</span></div>
-    <h2 class="qq">Pourquoi appelle-t-on le papier « Grain Cuir » ainsi ?</h2>
+    <div class="qnum">QUIZ 2 / 5 · 🎯</div>
+    <h2 class="qq">Pourquoi appelle-t-on le papier «&nbsp;Grain Cuir&nbsp;» ainsi&nbsp;?</h2>
     <div class="qopts">
       <button class="qopt">Parce qu'il est fabriqué à partir de cuir recyclé</button>
       <button class="qopt">Parce qu'il était autrefois réservé aux selles de chevaux</button>
@@ -279,41 +289,33 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 </section>
 
 <!-- 7 — QUIZ 3 -->
-<section class="slide">
+<section class="slide bord">
   <div class="brand"></div>
   <div class="qwrap">
-    <div class="qnum">QUIZ 3 / 5 <span class="qball">🎯</span></div>
-    <h2 class="qq">Quel est le poids approximatif de 5 ramettes de papier A4 (80 g) ?</h2>
-    <div class="qopts">
-      <button class="qopt">8 kg</button>
-      <button class="qopt" data-correct>12,5 kg</button>
-      <button class="qopt">Le poids d'un petit rhinocéros</button>
-    </div>
+    <div class="qnum">QUIZ 3 / 5 · 🎯</div>
+    <h2 class="qq">Quel est le poids approximatif de 5 ramettes de papier A4 (80 g)&nbsp;?</h2>
+    <div class="qopts"><button class="qopt">8 kg</button><button class="qopt" data-correct>12,5 kg</button><button class="qopt">Le poids d'un petit rhinocéros</button></div>
     <div class="qfeedback"></div>
   </div>
 </section>
 
 <!-- 8 — QUIZ 4 -->
-<section class="slide">
+<section class="slide bord">
   <div class="brand"></div>
   <div class="qwrap">
-    <div class="qnum">QUIZ 4 / 5 <span class="qball">🎯</span></div>
-    <h2 class="qq">Quelle couleur est la plus utilisée en impression professionnelle ?</h2>
-    <div class="qopts">
-      <button class="qopt">Rouge</button>
-      <button class="qopt">Vert</button>
-      <button class="qopt" data-correct>Noir</button>
-    </div>
+    <div class="qnum">QUIZ 4 / 5 · 🎯</div>
+    <h2 class="qq">Quelle couleur est la plus utilisée en impression professionnelle&nbsp;?</h2>
+    <div class="qopts"><button class="qopt">Rouge</button><button class="qopt">Vert</button><button class="qopt" data-correct>Noir</button></div>
     <div class="qfeedback"></div>
   </div>
 </section>
 
 <!-- 9 — QUIZ 5 -->
-<section class="slide">
+<section class="slide bord">
   <div class="brand"></div>
   <div class="qwrap">
-    <div class="qnum">QUIZ 5 / 5 <span class="qball">🎯</span></div>
-    <h2 class="qq">Que signifie l'acronyme CMJN ?</h2>
+    <div class="qnum">QUIZ 5 / 5 · 🎯</div>
+    <h2 class="qq">Que signifie l'acronyme CMJN&nbsp;?</h2>
     <div class="qopts">
       <button class="qopt">Couleurs Modernes Jaune Noir</button>
       <button class="qopt" data-correct>Cyan Magenta Jaune Noir</button>
@@ -324,12 +326,12 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 </section>
 
 <!-- 10 — TRANSITION : Aude & Wesley -->
-<section class="slide dark">
+<section class="slide bord">
   <div class="brand"></div>
   <div class="tr-text">
-    <div class="eyebrow">ÉTAPE 2</div>
-    <h2 class="t" style="font-size:42px;margin-top:10px;">Aude &amp; Wesley vous parlent de Mail Boxes Etc.</h2>
-    <p class="body" style="margin-top:14px;font-size:17px;color:#ddd;">Le réseau, la mission, et votre centre de Cholet.</p>
+    <div class="eyebrow"><span class="ln"></span>ÉTAPE 2</div>
+    <h2 class="t" style="font-size:42px;margin-top:12px;">Aude &amp; Wesley vous parlent de Mail Boxes Etc.</h2>
+    <p class="lead" style="margin-top:16px;font-size:18px;">Le réseau, la mission, et votre centre de Cholet.</p>
   </div>
   <div class="tr-cards">
     <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/a8042d9f13b76ff4f297650dbbec264e_Joueur%20AUDE%20HUTEAU_FR3301.png" alt="Aude Huteau">
@@ -339,81 +341,85 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 
 <!-- 11 — MAIL BOXES ETC. -->
 <section class="slide">
-  <div class="brand"></div>
-  <div class="pane wide">
-    <h2 class="t" style="font-size:38px;">Mail Boxes Etc.</h2>
-    <div class="accroche" style="font-size:18px;margin-top:8px;">#PeoplePossible</div>
-    <p class="body" style="margin-top:16px;font-size:15px;">Un réseau international de centres de proximité dédiés aux entreprises et aux particuliers.</p>
-    <p class="body" style="margin-top:12px;font-size:15px;"><b>1&nbsp;910 centres</b> de solutions d'affaires répartis dans <b>58&nbsp;pays</b>.</p>
-    <p class="body" style="margin-top:12px;font-size:15px;">Chaque jour, des entrepreneurs passionnés incarnent la mission #PeoplePossible : créer des solutions sur mesure qui transforment les défis de leurs clients en objectifs concrets.</p>
+  <div style="position:absolute;left:60px;top:0;bottom:0;width:560px;display:flex;flex-direction:column;justify-content:center;">
+    <div style="width:300px;height:96px;background:var(--logo-hor) left center/contain no-repeat;"></div>
+    <p class="lead" style="margin-top:24px;font-size:16px;color:#3a3338;">Un réseau international de centres de proximité dédiés aux entreprises et aux particuliers — la mission <b style="color:var(--red);">#PeoplePossible</b>&nbsp;: transformer les défis de nos clients en objectifs concrets.</p>
+    <div style="display:flex;gap:40px;margin-top:30px;">
+      <div><div class="stat" style="font-size:54px;">1&nbsp;910</div><div style="font-size:13px;font-weight:700;color:var(--muted-l);letter-spacing:1px;text-transform:uppercase;">centres dans le monde</div></div>
+      <div><div class="stat" style="font-size:54px;">58</div><div style="font-size:13px;font-weight:700;color:var(--muted-l);letter-spacing:1px;text-transform:uppercase;">pays</div></div>
+    </div>
   </div>
-  <div class="media" style="width:520px;"><img src="../assets/cholet/mbe-peoplepossible.png" alt="MBE People Possible"></div>
+  <div style="position:absolute;right:0;top:0;bottom:0;width:560px;display:flex;align-items:center;justify-content:center;background:var(--paper);">
+    <img src="../assets/cholet/mbe-peoplepossible.png" alt="MBE People Possible" style="max-width:94%;max-height:80%;object-fit:contain;">
+  </div>
 </section>
 
 <!-- 12 — NOTRE MISSION -->
 <section class="slide">
-  <div class="brand"></div>
-  <div style="position:absolute;left:64px;top:60px;width:560px;">
-    <h2 class="t" style="font-size:32px;color:var(--red);">Notre mission ?</h2>
-    <p class="body" style="font-size:14.5px;margin-top:14px;">Accompagner les professionnels et les entrepreneurs dans leur croissance, avec des services clé en main pour expédier, imprimer et gérer leurs besoins logistiques en toute simplicité.</p>
-    <p class="body" style="font-size:14.5px;margin-top:12px;">Grâce à nos partenariats, nos clients se concentrent sur ce qu'ils font de mieux : développer leur activité.</p>
-    <div class="t" style="font-size:48px;color:var(--red);margin-top:22px;">106 Centres</div>
+  <div style="position:absolute;left:60px;top:0;bottom:0;width:520px;display:flex;flex-direction:column;justify-content:center;">
+    <div class="eyebrow"><span class="ln"></span>NOTRE MISSION</div>
+    <h2 class="t" style="font-size:38px;margin-top:12px;">Faire grandir<br>les entrepreneurs</h2>
+    <p class="lead" style="margin-top:16px;font-size:15px;">Des services clé en main pour expédier, imprimer et gérer leurs besoins logistiques — pour qu'ils se concentrent sur l'essentiel&nbsp;: développer leur activité.</p>
+    <div style="display:flex;align-items:baseline;gap:14px;margin-top:26px;">
+      <div class="stat" style="font-size:64px;">106</div>
+      <div style="font-size:15px;font-weight:700;color:var(--ink);letter-spacing:.5px;">Centres<br>en France</div>
+    </div>
   </div>
-  <div class="svc" style="position:absolute;right:54px;top:84px;width:500px;">
-    <div class="it"><div class="ic">📦</div><div><h4>Emballage &amp; Expédition</h4><p>Nous emballons, expédions et livrons partout dans le monde.</p></div></div>
-    <div class="it"><div class="ic">✏️</div><div><h4>Graphisme &amp; Impression</h4><p>Nous donnons vie à vos idées et imprimons tous vos supports.</p></div></div>
-    <div class="it"><div class="ic">📬</div><div><h4>Domiciliation &amp; B.A.L.</h4><p>Une adresse prestigieuse et la gestion de votre courrier.</p></div></div>
-    <div class="it"><div class="ic">🛒</div><div><h4>Fournitures &amp; autres</h4><p>Tout le nécessaire pour votre quotidien professionnel.</p></div></div>
+  <div class="scards" style="position:absolute;right:56px;top:0;bottom:0;width:540px;margin:auto 0;align-content:center;">
+    <div class="scard"><div class="ic">📦</div><h4>Emballage &amp; Expédition</h4><p>Nous emballons, expédions et livrons partout dans le monde.</p></div>
+    <div class="scard"><div class="ic">✏️</div><h4>Graphisme &amp; Impression</h4><p>Nous donnons vie à vos idées et imprimons tous vos supports.</p></div>
+    <div class="scard"><div class="ic">📬</div><h4>Domiciliation &amp; B.A.L.</h4><p>Une adresse prestigieuse et la gestion de votre courrier.</p></div>
+    <div class="scard"><div class="ic">🛒</div><h4>Fournitures &amp; autres</h4><p>Tout le nécessaire pour votre quotidien professionnel.</p></div>
   </div>
 </section>
 
 <!-- 13 — MBE CHOLET -->
 <section class="slide">
-  <div class="brand"></div>
-  <div style="position:absolute;left:64px;top:54px;right:64px;">
-    <h2 class="t" style="font-size:34px;color:var(--red);">Mail Boxes Etc. — Cholet</h2>
-    <div class="accroche" style="color:var(--ink);font-size:18px;margin-top:4px;">Votre centre de proximité</div>
+  <div style="position:absolute;left:60px;top:0;bottom:0;width:440px;display:flex;flex-direction:column;justify-content:center;">
+    <div class="eyebrow"><span class="ln"></span>VOTRE CENTRE DE PROXIMITÉ</div>
+    <h2 class="t" style="font-size:40px;margin-top:12px;">Mail Boxes Etc.<br>Cholet</h2>
+    <div style="display:flex;gap:30px;margin-top:24px;">
+      <div><div class="stat" style="font-size:30px;">2022</div><div style="font-size:12px;color:var(--muted-l);font-weight:700;">Ouverture</div></div>
+      <div><div class="stat" style="font-size:30px;">60+</div><div style="font-size:12px;color:var(--muted-l);font-weight:700;">Clients pros</div></div>
+      <div><div class="stat" style="font-size:30px;">B2B·B2C</div><div style="font-size:12px;color:var(--muted-l);font-weight:700;">Nos clients</div></div>
+    </div>
+    <p class="lead" style="margin-top:22px;font-size:14px;">Sur le territoire Choletais et ses alentours, dans des domaines variés.</p>
   </div>
-  <div style="position:absolute;left:64px;top:150px;width:440px;">
-    <p class="body" style="font-size:15px;"><b>Ouverture :</b> fin novembre 2022</p>
-    <p class="body" style="font-size:15px;margin-top:10px;"><b>Nos clients :</b> B2C &amp; B2B</p>
-    <p class="body" style="font-size:15px;margin-top:10px;">Plus de <b>60 clients professionnels</b> sur le territoire Choletais et ses alentours, dans des domaines variés :</p>
-  </div>
-  <div class="chips" style="position:absolute;right:54px;top:150px;width:560px;">
-    <div class="chip"><div class="ic">🛒</div><span>E-commerce</span></div>
-    <div class="chip"><div class="ic">🏭</div><span>Industriel</span></div>
-    <div class="chip"><div class="ic">🤝</div><span>Associations</span></div>
-    <div class="chip"><div class="ic">🎨</div><span>Peintres &amp; artistes</span></div>
-    <div class="chip"><div class="ic">🎓</div><span>Écoles &amp; établissements</span></div>
-    <div class="chip"><div class="ic">💼</div><span>Professions libérales</span></div>
-    <div class="chip"><div class="ic">🏪</div><span>Commerces</span></div>
-    <div class="chip"><div class="ic">🔨</div><span>Salles des ventes</span></div>
-    <div class="chip"><div class="ic">👤</div><span>Indépendants &amp; freelances</span></div>
-    <div class="chip"><div class="ic">➕</div><span>Et bien d'autres…</span></div>
-  </div>
-</section>
-
-<!-- 14 — TÉMOIGNAGE CLIENT -->
-<section class="slide">
-  <div class="temoi">
-    <div class="left"><img src="../assets/cholet/zen-logo.png" alt="ZEN NET / ZEN HOME"></div>
-    <div class="right">
-      <div class="lbl">EXPÉRIENCE CLIENT</div>
-      <h2>Baptiste Barbosa</h2>
-      <img class="photo" src="../assets/cholet/baptiste.png" alt="Baptiste Barbosa">
-      <div class="name">ZEN NET · ZEN HOME</div>
-      <p style="font-size:14px;max-width:360px;color:#ffe;">Il partage son expérience client avec Mail Boxes Etc. Cholet.</p>
+  <div style="position:absolute;right:56px;top:0;bottom:0;width:560px;display:flex;flex-direction:column;justify-content:center;">
+    <div class="chips">
+      <div class="chip"><div class="ic">🛒</div><span>E-commerce</span></div>
+      <div class="chip"><div class="ic">🏭</div><span>Industriel</span></div>
+      <div class="chip"><div class="ic">🤝</div><span>Associations</span></div>
+      <div class="chip"><div class="ic">🎨</div><span>Peintres &amp; artistes</span></div>
+      <div class="chip"><div class="ic">🎓</div><span>Écoles &amp; établissements</span></div>
+      <div class="chip"><div class="ic">💼</div><span>Professions libérales</span></div>
+      <div class="chip"><div class="ic">🏪</div><span>Commerces</span></div>
+      <div class="chip"><div class="ic">🔨</div><span>Salles des ventes</span></div>
+      <div class="chip"><div class="ic">👤</div><span>Indépendants &amp; freelances</span></div>
+      <div class="chip"><div class="ic">➕</div><span>Et bien d'autres…</span></div>
     </div>
   </div>
 </section>
 
-<!-- 15 — TRANSITION : Aude & Kaïna, les solutions -->
-<section class="slide dark">
+<!-- 14 — TÉMOIGNAGE -->
+<section class="slide bord">
+  <div class="brand"></div>
+  <div class="tphoto"><img src="../assets/cholet/baptiste.png" alt="Baptiste Barbosa"></div>
+  <div class="ttext">
+    <div class="eyebrow"><span class="ln"></span>EXPÉRIENCE CLIENT</div>
+    <h2 class="t" style="font-size:44px;margin-top:12px;">Baptiste nous raconte…</h2>
+    <p class="lead" style="margin-top:16px;font-size:17px;">Son expérience client avec Mail Boxes Etc. Cholet.</p>
+    <div class="zenchip"><span class="zw"><img src="../assets/cholet/zen-logo.png" alt=""></span><span>ZEN NET · ZEN HOME</span></div>
+  </div>
+</section>
+
+<!-- 15 — TRANSITION : Aude & Kaïna -->
+<section class="slide bord">
   <div class="brand"></div>
   <div class="tr-text">
-    <div class="eyebrow">ÉTAPE 3</div>
-    <h2 class="t" style="font-size:42px;margin-top:10px;">Aude &amp; Kaïna développent les solutions</h2>
-    <p class="body" style="margin-top:14px;font-size:17px;color:#ddd;">Impression, graphisme : tout ce que votre centre peut faire pour vous.</p>
+    <div class="eyebrow"><span class="ln"></span>ÉTAPE 3</div>
+    <h2 class="t" style="font-size:42px;margin-top:12px;">Aude &amp; Kaïna développent les solutions</h2>
+    <p class="lead" style="margin-top:16px;font-size:18px;">Impression, graphisme&nbsp;: tout ce que votre centre peut faire pour vous.</p>
   </div>
   <div class="tr-cards">
     <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/a8042d9f13b76ff4f297650dbbec264e_Joueur%20AUDE%20HUTEAU_FR3301.png" alt="Aude Huteau">
@@ -421,141 +427,117 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
   </div>
 </section>
 
-<!-- 16 — BIEN PLUS QU'UN IMPRIMEUR 1/2 -->
-<section class="slide grayb">
-  <div class="redband"><h2>MBE CHOLET — BIEN PLUS QU'UN IMPRIMEUR !</h2></div>
+<!-- 16 — IMPRIMEUR 1/2 -->
+<section class="slide">
+  <div class="redband"><h2>MBE Cholet — bien plus qu'un imprimeur</h2></div>
   <div class="blocs">
     <div class="bloc">
-      <div class="badge" style="background:var(--navy);">01</div>
-      <h3 style="color:var(--navy);">Un interlocuteur unique</h3>
-      <ul>
-        <li>Gestion complète du projet de A à Z</li>
-        <li>Création graphique, mise en page et vérification des fichiers</li>
-        <li>Impressions, finitions et LIVRAISON</li>
-      </ul>
+      <div class="badge">01</div>
+      <h3>Un interlocuteur unique</h3>
+      <ul><li>Gestion complète du projet de A à Z</li><li>Création graphique, mise en page et vérification des fichiers</li><li>Impressions, finitions et livraison</li></ul>
     </div>
     <div class="bloc">
-      <div class="badge" style="background:var(--orange);">02</div>
-      <h3 style="color:var(--orange);">Conseil et accompagnement</h3>
-      <ul>
-        <li>Échanges directs avec une équipe de proximité</li>
-        <li>Aide au choix des formats, papiers, quantités, finitions et délais</li>
-      </ul>
+      <div class="badge">02</div>
+      <h3>Conseil &amp; accompagnement</h3>
+      <ul><li>Échanges directs avec une équipe de proximité</li><li>Aide au choix des formats, papiers, quantités, finitions et délais</li></ul>
     </div>
   </div>
 </section>
 
-<!-- 17 — BIEN PLUS QU'UN IMPRIMEUR 2/2 -->
-<section class="slide grayb">
-  <div class="redband"><h2>MBE CHOLET — BIEN PLUS QU'UN IMPRIMEUR</h2></div>
+<!-- 17 — IMPRIMEUR 2/2 -->
+<section class="slide">
+  <div class="redband"><h2>MBE Cholet — bien plus qu'un imprimeur</h2></div>
   <div class="blocs">
-    <div class="bloc">
-      <div class="badge" style="background:var(--navy);">03</div>
-      <h3 style="color:var(--navy);">Réactivité et flexibilité</h3>
-      <ul><li>Cartes de visite</li><li>Flyers</li><li>Affiches</li><li>Brochures</li><li>Documents administratifs</li></ul>
-    </div>
-    <div class="bloc">
-      <div class="badge" style="background:var(--beige);">04</div>
-      <h3 style="color:var(--beige);">Services de façonnage</h3>
-      <ul><li>Reliure</li><li>Plastification</li><li>Numérisation</li><li>Finitions diverses</li></ul>
-    </div>
+    <div class="bloc"><div class="badge">03</div><h3>Réactivité &amp; flexibilité</h3><ul><li>Cartes de visite</li><li>Flyers</li><li>Affiches</li><li>Brochures</li><li>Documents administratifs</li></ul></div>
+    <div class="bloc"><div class="badge">04</div><h3>Services de façonnage</h3><ul><li>Reliure</li><li>Plastification</li><li>Numérisation</li><li>Finitions diverses</li></ul></div>
   </div>
 </section>
 
-<!-- 18 — IMPRESSION + EXPÉDITION INTÉGRÉE -->
-<section class="slide grayb">
-  <div class="redband"><h2>MBE CHOLET — BIEN PLUS QU'UN IMPRIMEUR</h2></div>
-  <div style="position:absolute;left:120px;right:120px;top:150px;bottom:60px;background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.12);padding:34px 44px;display:flex;align-items:center;gap:30px;">
+<!-- 18 — IMPRESSION + EXPÉDITION -->
+<section class="slide">
+  <div class="redband"><h2>MBE Cholet — bien plus qu'un imprimeur</h2></div>
+  <div style="position:absolute;left:110px;right:110px;top:148px;bottom:56px;background:#fff;border-radius:20px;box-shadow:0 14px 36px rgba(0,0,0,.12);border:1px solid var(--line-l);padding:36px 46px;display:flex;align-items:center;gap:36px;">
     <div style="flex:1;">
-      <div class="bloc" style="box-shadow:none;padding:0;background:transparent;">
-        <div class="badge" style="background:var(--navy);position:static;margin-bottom:14px;">05</div>
-        <h3 style="color:var(--red);">Impression + expédition intégrée</h3>
-        <ul><li>Préparation des colis</li><li>Emballage</li><li>Expédition en France et à l'international</li></ul>
-      </div>
+      <div class="badge" style="position:static;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;background:linear-gradient(135deg,#E2001A,#8B0A16);margin-bottom:16px;">05</div>
+      <h3 style="font-weight:700;font-size:20px;color:var(--ink);text-transform:uppercase;letter-spacing:.4px;border-bottom:2px solid var(--red);display:inline-block;padding-bottom:10px;margin-bottom:18px;">Impression + expédition intégrée</h3>
+      <ul class="plist"><li>Préparation des colis</li><li>Emballage professionnel</li><li>Expédition en France et à l'international</li></ul>
     </div>
-    <div style="flex:0 0 320px;height:260px;display:flex;align-items:center;justify-content:center;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/886688595f398372721084da8e148937_Illustration_Print%20%284%29.png" alt="Colis personnalisé" style="max-width:100%;max-height:100%;object-fit:contain;"></div>
+    <div style="flex:0 0 320px;height:280px;display:flex;align-items:center;justify-content:center;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/886688595f398372721084da8e148937_Illustration_Print%20%284%29.png" alt="Colis personnalisé" style="max-width:100%;max-height:100%;object-fit:contain;"></div>
   </div>
 </section>
 
-<!-- 19 — TYPES D'IMPRESSION (intégré) -->
+<!-- 19 — TYPES D'IMPRESSION -->
 <section class="slide">
-  <div class="brand"></div>
-  <div style="position:absolute;left:64px;top:50px;">
-    <div class="eyebrow">CE QUE NOUS IMPRIMONS</div>
-    <h2 class="t" style="font-size:34px;margin-top:8px;">Du petit au grand format</h2>
-  </div>
-  <div style="position:absolute;left:64px;right:64px;top:150px;bottom:48px;display:grid;grid-template-columns:1fr 1fr;gap:30px;">
-    <div style="background:var(--gray);border-radius:16px;padding:24px 26px;">
-      <div class="accroche" style="font-size:17px;">🖨️ Petit format</div>
-      <ul class="plist" style="margin-top:14px;">
-        <li>Cartes de visite</li><li>Flyers &amp; prospectus</li><li>Brochures &amp; dépliants</li>
-        <li>Affiches (A4 → A0)</li><li>Étiquettes &amp; autocollants</li><li>Documents reliés &amp; plastifiés</li>
-      </ul>
+  <div class="head"><div class="eyebrow"><span class="ln"></span>CE QUE NOUS IMPRIMONS</div><h2 class="t" style="margin-top:10px;">Du petit au grand format</h2></div>
+  <div style="position:absolute;left:60px;right:60px;top:158px;bottom:46px;display:grid;grid-template-columns:1fr 1fr;gap:28px;">
+    <div style="background:#fff;border:1px solid var(--line-l);border-radius:18px;padding:26px 30px;box-shadow:0 10px 28px rgba(0,0,0,.06);">
+      <div style="display:flex;align-items:center;gap:12px;"><div style="width:42px;height:42px;border-radius:12px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;">🖨️</div><div style="font-weight:700;font-size:18px;color:var(--ink);">Petit format</div></div>
+      <ul class="plist" style="margin-top:18px;"><li>Cartes de visite</li><li>Flyers &amp; prospectus</li><li>Brochures &amp; dépliants</li><li>Affiches (A4 → A0)</li><li>Étiquettes &amp; autocollants</li><li>Documents reliés &amp; plastifiés</li></ul>
     </div>
-    <div style="background:var(--gray);border-radius:16px;padding:24px 26px;">
-      <div class="accroche" style="font-size:17px;">🪧 Grand format &amp; signalétique</div>
-      <ul class="plist" style="margin-top:14px;">
-        <li>Roll-ups &amp; kakémonos</li><li>Bâches &amp; banderoles</li><li>Adhésifs &amp; vitrophanies</li>
-        <li>Panneaux &amp; PLV</li><li>Flammes &amp; oriflammes</li><li>Signalétique d'événement</li>
-      </ul>
+    <div style="background:#fff;border:1px solid var(--line-l);border-radius:18px;padding:26px 30px;box-shadow:0 10px 28px rgba(0,0,0,.06);">
+      <div style="display:flex;align-items:center;gap:12px;"><div style="width:42px;height:42px;border-radius:12px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;">🪧</div><div style="font-weight:700;font-size:18px;color:var(--ink);">Grand format &amp; signalétique</div></div>
+      <ul class="plist" style="margin-top:18px;"><li>Roll-ups &amp; kakémonos</li><li>Bâches &amp; banderoles</li><li>Adhésifs &amp; vitrophanies</li><li>Panneaux &amp; PLV</li><li>Flammes &amp; oriflammes</li><li>Signalétique d'événement</li></ul>
     </div>
   </div>
 </section>
 
-<!-- 20 — CONSEILS (intégré) -->
+<!-- 20 — CONSEILS -->
 <section class="slide">
-  <div class="brand"></div>
-  <div style="position:absolute;left:64px;top:50px;">
-    <div class="eyebrow">LES BONS RÉFLEXES</div>
-    <h2 class="t" style="font-size:34px;margin-top:8px;">Avant d'imprimer</h2>
-  </div>
-  <div class="tips" style="position:absolute;left:64px;right:64px;top:150px;">
-    <div class="tip"><div class="ic">🖨️</div><div class="tx"><h4>Qualité fichier</h4><p>Minimum 300 dpi pour une impression nette ; en basse résolution, le rendu sera flou.</p></div></div>
-    <div class="tip"><div class="ic">📐</div><div class="tx"><h4>Fond perdu</h4><p>Prévoir 3 mm au-delà du format final pour éviter les bordures blanches après découpe.</p></div></div>
-    <div class="tip"><div class="ic">✂️</div><div class="tx"><h4>Traits de coupe</h4><p>À inclure selon le support — en cas de doute, demandez à votre centre MBE.</p></div></div>
-    <div class="tip"><div class="ic">🎨</div><div class="tx"><h4>Colorimétrie</h4><p>Travailler en CMJN, pas en RVB : les couleurs écran ne s'impriment pas à l'identique.</p></div></div>
-    <div class="tip"><div class="ic">📄</div><div class="tx"><h4>Format de fichier</h4><p>Le PDF print-ready garantit la conformité de votre fichier.</p></div></div>
-    <div class="tip"><div class="ic">💬</div><div class="tx"><h4>Un doute ?</h4><p>Pas de fichier prêt ? Notre équipe graphisme s'occupe de tout.</p></div></div>
+  <div class="head"><div class="eyebrow"><span class="ln"></span>LES BONS RÉFLEXES</div><h2 class="t" style="margin-top:10px;">Avant d'imprimer</h2></div>
+  <div class="tips" style="position:absolute;left:60px;right:60px;top:160px;bottom:46px;align-content:center;">
+    <div class="tip"><div class="ic">🖨️</div><div><h4>Qualité fichier</h4><p>Minimum 300 dpi pour une impression nette ; en basse résolution, le rendu sera flou.</p></div></div>
+    <div class="tip"><div class="ic">📐</div><div><h4>Fond perdu</h4><p>Prévoir 3 mm au-delà du format final pour éviter les bordures blanches après découpe.</p></div></div>
+    <div class="tip"><div class="ic">✂️</div><div><h4>Traits de coupe</h4><p>À inclure selon le support — en cas de doute, demandez à votre centre MBE.</p></div></div>
+    <div class="tip"><div class="ic">🎨</div><div><h4>Colorimétrie</h4><p>Travailler en CMJN, pas en RVB : les couleurs écran ne s'impriment pas à l'identique.</p></div></div>
+    <div class="tip"><div class="ic">📄</div><div><h4>Format de fichier</h4><p>Le PDF print-ready garantit la conformité de votre fichier.</p></div></div>
+    <div class="tip"><div class="ic">💬</div><div><h4>Un doute&nbsp;?</h4><p>Pas de fichier prêt&nbsp;? Notre équipe graphisme s'occupe de tout.</p></div></div>
   </div>
 </section>
 
 <!-- 21 — NOS SOLUTIONS -->
 <section class="slide">
-  <h2 class="t" style="position:absolute;top:46px;left:0;right:0;text-align:center;font-size:36px;color:var(--red);">Nos solutions d'impression &amp; de graphisme</h2>
-  <div style="position:absolute;left:64px;right:64px;top:130px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;height:230px;">
-    <div style="background:var(--gray);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:14px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1169da63afed285ca4f28230e32fce1b_Illustration_Print%20%289%29.png" style="max-width:100%;max-height:100%;object-fit:contain;" alt=""></div>
-    <div style="background:var(--gray);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:14px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/3a0c995dc81d11e9a88333e7af1df17b_Illustration_Print%20%283%29.png" style="max-width:100%;max-height:100%;object-fit:contain;" alt=""></div>
-    <div style="background:var(--gray);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:14px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/831c55ec0cf656b23da1d778739bc119_Illustration_Print%20%287%29.png" style="max-width:100%;max-height:100%;object-fit:contain;" alt=""></div>
+  <div style="position:absolute;top:50px;left:0;right:0;text-align:center;"><div class="eyebrow" style="justify-content:center;">NOS SOLUTIONS</div><h2 class="t" style="font-size:34px;margin-top:8px;">Impression &amp; graphisme, de A à Z</h2></div>
+  <div style="position:absolute;left:60px;right:60px;top:150px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;height:228px;">
+    <div style="background:var(--paper);border:1px solid var(--line-l);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:14px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1169da63afed285ca4f28230e32fce1b_Illustration_Print%20%289%29.png" style="max-width:100%;max-height:100%;object-fit:contain;" alt=""></div>
+    <div style="background:var(--paper);border:1px solid var(--line-l);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:14px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/3a0c995dc81d11e9a88333e7af1df17b_Illustration_Print%20%283%29.png" style="max-width:100%;max-height:100%;object-fit:contain;" alt=""></div>
+    <div style="background:var(--paper);border:1px solid var(--line-l);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:14px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/831c55ec0cf656b23da1d778739bc119_Illustration_Print%20%287%29.png" style="max-width:100%;max-height:100%;object-fit:contain;" alt=""></div>
   </div>
-  <div style="position:absolute;left:64px;right:64px;bottom:70px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
-    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">🖊️</div><div class="cap" style="font-weight:700;color:var(--ink);font-size:12px;">Création graphique</div></div>
-    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">🖨️</div><div class="cap" style="font-weight:700;color:var(--ink);font-size:12px;">Impression tous formats</div></div>
-    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">📃</div><div class="cap" style="font-weight:700;color:var(--ink);font-size:12px;">Supports de communication</div></div>
-    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">📐</div><div class="cap" style="font-weight:700;color:var(--ink);font-size:12px;">Finitions &amp; façonnage</div></div>
+  <div style="position:absolute;left:60px;right:60px;bottom:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
+    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:15px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">🖊️</div><div style="font-weight:700;color:var(--ink);font-size:12.5px;">Création graphique</div></div>
+    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:15px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">🖨️</div><div style="font-weight:700;color:var(--ink);font-size:12.5px;">Impression tous formats</div></div>
+    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:15px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">📃</div><div style="font-weight:700;color:var(--ink);font-size:12.5px;">Supports de communication</div></div>
+    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:15px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">📐</div><div style="font-weight:700;color:var(--ink);font-size:12.5px;">Finitions &amp; façonnage</div></div>
   </div>
 </section>
 
-<!-- 22-24 — GALERIES RÉALISATIONS -->
-<section class="slide">
-  <img class="bleed" src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/c7fce099b3279d5ea00a08b4e3d79464_Illustration_Print3301_a.png" alt="Réalisations MBE Cholet">
-  <div class="galnote cap">Réalisations du Centre MBE Cholet</div>
-</section>
-<section class="slide dark" style="background:#000;">
-  <img class="bleed" src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/b9d6904b4bd9830b05faab84751a21a9_Illustration_Print3301_b.png" alt="Réalisations MBE Cholet">
-  <div class="galnote cap" style="color:#bbb;">Réalisations du Centre MBE Cholet</div>
-</section>
-<section class="slide">
-  <img class="bleed" src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/84c24d413a8ffe874e7c5eb4243a966f_Illustration_Print3301_c.png" alt="Réalisations MBE Cholet">
-  <div class="galnote cap">Réalisations du Centre MBE Cholet</div>
+<!-- 22 — GALERIE 1 (labels noirs → board clair) -->
+<section class="slide bord">
+  <div class="brand"></div>
+  <div class="galcap"><div class="eyebrow"><span class="ln"></span>RÉALISATIONS · MBE CHOLET</div></div>
+  <div class="board lightb"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/c7fce099b3279d5ea00a08b4e3d79464_Illustration_Print3301_a.png" alt="Réalisations MBE Cholet"></div>
 </section>
 
-<!-- 25 — TRANSITION : Wesley, services complémentaires -->
-<section class="slide dark">
+<!-- 23 — GALERIE 2 (labels blancs → board sombre) -->
+<section class="slide bord">
+  <div class="brand"></div>
+  <div class="galcap"><div class="eyebrow"><span class="ln"></span>RÉALISATIONS · MBE CHOLET</div></div>
+  <div class="board darkb"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/b9d6904b4bd9830b05faab84751a21a9_Illustration_Print3301_b.png" alt="Réalisations MBE Cholet"></div>
+</section>
+
+<!-- 24 — GALERIE 3 (labels noirs → board clair) -->
+<section class="slide bord">
+  <div class="brand"></div>
+  <div class="galcap"><div class="eyebrow"><span class="ln"></span>RÉALISATIONS · MBE CHOLET</div></div>
+  <div class="board lightb"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/84c24d413a8ffe874e7c5eb4243a966f_Illustration_Print3301_c.png" alt="Réalisations MBE Cholet"></div>
+</section>
+
+<!-- 25 — TRANSITION : Wesley -->
+<section class="slide bord">
   <div class="brand"></div>
   <div class="tr-text">
-    <div class="eyebrow">ÉTAPE 4</div>
-    <h2 class="t" style="font-size:42px;margin-top:10px;">Wesley présente les services complémentaires</h2>
-    <p class="body" style="margin-top:14px;font-size:17px;color:#ddd;">Au-delà de l'impression, tout un écosystème au service des entrepreneurs.</p>
+    <div class="eyebrow"><span class="ln"></span>ÉTAPE 4</div>
+    <h2 class="t" style="font-size:42px;margin-top:12px;">Wesley présente les services complémentaires</h2>
+    <p class="lead" style="margin-top:16px;font-size:18px;">Au-delà de l'impression, tout un écosystème au service des entrepreneurs.</p>
   </div>
   <div class="tr-cards">
     <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1cad7b59c6c90d6a7b47283abcb9f236_Joueur%20WESLEY%20BEDOT_FR3301.png" alt="Wesley Bedot">
@@ -564,11 +546,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 
 <!-- 26 — SERVICES COMPLÉMENTAIRES -->
 <section class="slide">
-  <div class="brand"></div>
-  <div style="position:absolute;left:64px;top:50px;right:64px;">
-    <h2 class="t" style="font-size:34px;">Nos services complémentaires</h2>
-    <p class="body" style="margin-top:8px;font-size:15px;"><b>Domiciliation &amp; boîtes aux lettres</b> — une adresse professionnelle et une boîte aux lettres sécurisée pour simplifier votre gestion.</p>
-  </div>
+  <div class="head" style="right:60px;"><div class="eyebrow"><span class="ln"></span>SERVICES COMPLÉMENTAIRES</div><h2 class="t" style="margin-top:10px;">Domiciliation &amp; boîtes aux lettres</h2><p class="lead" style="margin-top:8px;font-size:14.5px;max-width:760px;">Une adresse professionnelle et une boîte aux lettres sécurisée pour simplifier votre gestion.</p></div>
   <div class="photos3">
     <div class="ph"><img src="../assets/cholet/bal.png" alt="Boîtes aux lettres"></div>
     <div class="ph"><img src="../assets/cholet/produits.png" alt="Fournitures"></div>
@@ -576,35 +554,28 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
   </div>
 </section>
 
-<!-- 27 — NOS SERVICES (écosystème) -->
-<section class="slide">
+<!-- 27 — NOS SERVICES (écosystème, grille de cartes) -->
+<section class="slide bord">
   <div class="brand"></div>
-  <div style="position:absolute;left:64px;top:54px;">
-    <h2 class="t" style="font-size:32px;">Nos services</h2>
-    <div class="accroche" style="font-size:18px;margin-top:6px;">Une aide 360° pour les entrepreneurs</div>
+  <div class="phead">
+    <div class="eyebrow"><span class="ln"></span>UNE AIDE 360°</div>
+    <h2 class="t" style="font-size:36px;margin-top:10px;">L'écosystème MBE</h2>
   </div>
-  <div style="position:absolute;left:120px;right:120px;top:150px;bottom:54px;background:var(--dark);border-radius:18px;padding:30px 44px;display:flex;flex-direction:column;justify-content:center;gap:22px;">
-    <div class="cap" style="color:#bbb;">Solutions logistiques &amp; services</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px 40px;align-items:center;">
-      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/869529672bb0a62b5cbe2fe88cd53865_MBE_eShip%20White.png" alt="MBE eShip" style="height:30px;width:auto;object-fit:contain;justify-self:start;">
-      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/577887104073222ee68d1be014e1f209_MBE%20Fulfillment_Negative.png" alt="MBE Fulfillment" style="height:30px;width:auto;object-fit:contain;justify-self:start;">
-      <img src="https://auction.mbeglobal.com/images/logo-white.png" alt="MBE Auction" style="height:30px;width:auto;object-fit:contain;justify-self:start;">
-      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/22609fb0fdaa2ac8cde93a7aac1f303a_MBE%20Wine%20Logo_Neg.png" alt="MBE Wine" style="height:30px;width:auto;object-fit:contain;justify-self:start;">
-      <span style="color:#fff;font-weight:700;font-size:16px;">MBE Packing</span>
-      <span style="color:#fff;font-weight:700;font-size:16px;">MBE Shipping</span>
-      <span style="color:#fff;font-weight:700;font-size:16px;">MBE OnLine</span>
-      <span style="color:#fff;font-weight:700;font-size:16px;">MBE SafeValue</span>
-    </div>
+  <div class="eco-grid">
+    <div class="ecard"><div class="en">MBE <b>eShip</b></div><div class="ed">Expédition multi-transporteurs connectée à votre e-commerce.</div></div>
+    <div class="ecard"><div class="en">MBE <b>Fulfillment</b></div><div class="ed">Logistique externalisée : stockage, préparation, expédition.</div></div>
+    <div class="ecard"><div class="en">MBE <b>Auction</b></div><div class="ed">Emballage &amp; envoi pour les ventes aux enchères.</div></div>
+    <div class="ecard"><div class="en">MBE <b>Wine</b></div><div class="ed">Solutions d'expédition dédiées aux vins &amp; spiritueux.</div></div>
+    <div class="ecard"><div class="en">MBE <b>Packing</b></div><div class="ed">Emballage professionnel sur-mesure, même fragile.</div></div>
+    <div class="ecard"><div class="en">MBE <b>Shipping</b></div><div class="ed">Courtage transport France, Europe et international.</div></div>
+    <div class="ecard"><div class="en">MBE <b>OnLine</b></div><div class="ed">Vos commandes d'impression et d'envoi en ligne.</div></div>
+    <div class="ecard"><div class="en">MBE <b>SafeValue</b></div><div class="ed">Protection renforcée des envois de valeur.</div></div>
   </div>
 </section>
 
-<!-- 28 — NOS TRANSPORTEURS -->
+<!-- 28 — TRANSPORTEURS -->
 <section class="slide">
-  <div class="brand"></div>
-  <div style="position:absolute;left:64px;top:54px;">
-    <h2 class="t" style="font-size:34px;">Nos transporteurs</h2>
-    <div class="accroche" style="color:var(--ink);font-size:17px;margin-top:4px;">Le bon transporteur pour chaque envoi</div>
-  </div>
+  <div class="head"><div class="eyebrow"><span class="ln"></span>NOS TRANSPORTEURS</div><h2 class="t" style="margin-top:10px;">Le bon transporteur pour chaque envoi</h2></div>
   <div class="carriers">
     <div class="cell"><img src="../assets/carriers/gls.png" alt="GLS"></div>
     <div class="cell"><img src="../assets/carriers/ups.png" alt="UPS"></div>
@@ -613,42 +584,35 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
     <div class="cell"><img src="../assets/carriers/fedex.png" alt="FedEx"></div>
     <div class="cell"><img src="../assets/carriers/tnt.png" alt="TNT"></div>
     <div class="cell"><img src="../assets/carriers/db-schenker.png" alt="DB Schenker"></div>
-    <div class="cell" style="border-style:dashed;color:var(--mid);font-family:var(--sans);font-size:13px;">+ partenaires</div>
+    <div class="cell more">+ partenaires</div>
   </div>
 </section>
 
 <!-- 29 — RÉSULTAT DU JEU -->
-<section class="slide dark">
+<section class="slide bord">
   <div class="brand"></div>
-  <div class="tr-text" style="width:430px;">
-    <div class="eyebrow">ÉTAPE 5</div>
-    <h2 class="t" style="font-size:40px;margin-top:10px;">Kaïna donne le résultat du jeu !</h2>
-    <p class="body" style="margin-top:14px;font-size:16px;color:#ddd;">Les 5 bonnes réponses, récapitulées.</p>
+  <div class="tr-text" style="width:420px;">
+    <div class="eyebrow"><span class="ln"></span>ÉTAPE 5</div>
+    <h2 class="t" style="font-size:40px;margin-top:12px;">Le résultat du jeu&nbsp;!</h2>
+    <p class="lead" style="margin-top:14px;font-size:16px;">Les 5 bonnes réponses, récapitulées par Kaïna.</p>
   </div>
-  <div style="position:absolute;right:50px;top:60px;bottom:60px;width:620px;display:flex;flex-direction:column;justify-content:center;gap:12px;">
-    <div style="background:#262626;border-left:4px solid var(--green);border-radius:10px;padding:12px 18px;color:#fff;font-size:14px;"><b>A6 dans un A0 ?</b> → 32</div>
-    <div style="background:#262626;border-left:4px solid var(--green);border-radius:10px;padding:12px 18px;color:#fff;font-size:14px;"><b>Papier « Grain Cuir » ?</b> → sa texture imite le cuir</div>
-    <div style="background:#262626;border-left:4px solid var(--green);border-radius:10px;padding:12px 18px;color:#fff;font-size:14px;"><b>Poids de 5 ramettes A4 ?</b> → 12,5 kg</div>
-    <div style="background:#262626;border-left:4px solid var(--green);border-radius:10px;padding:12px 18px;color:#fff;font-size:14px;"><b>Couleur la plus utilisée ?</b> → le Noir</div>
-    <div style="background:#262626;border-left:4px solid var(--green);border-radius:10px;padding:12px 18px;color:#fff;font-size:14px;"><b>CMJN ?</b> → Cyan Magenta Jaune Noir</div>
+  <div class="results">
+    <div class="res"><b>A6 dans un A0&nbsp;?</b> → 32</div>
+    <div class="res"><b>Papier «&nbsp;Grain Cuir&nbsp;»&nbsp;?</b> → sa texture imite le cuir</div>
+    <div class="res"><b>Poids de 5 ramettes A4&nbsp;?</b> → 12,5 kg</div>
+    <div class="res"><b>Couleur la plus utilisée&nbsp;?</b> → le Noir</div>
+    <div class="res"><b>CMJN&nbsp;?</b> → Cyan Magenta Jaune Noir</div>
   </div>
 </section>
 
 <!-- 30 — MERCI -->
-<section class="slide">
-  <div class="brand"></div>
-  <div class="pane wide">
-    <h2 class="t" style="font-size:40px;color:var(--red);">Merci de votre attention !</h2>
-    <div style="font-family:var(--sans);font-weight:700;font-style:italic;font-size:24px;color:var(--red);margin-top:18px;line-height:1.3;">Échangeons davantage<br>autour d'un café !</div>
-    <div style="margin-top:24px;font-family:var(--sans);font-weight:700;font-size:13px;color:var(--mid);">#PeoplePossible</div>
+<section class="slide bord">
+  <div class="merci">
+    <div class="eyebrow" style="justify-content:center;"><span class="ln"></span>MBE CHOLET<span class="ln"></span></div>
+    <h2 class="t" style="font-size:56px;margin-top:18px;">Merci&nbsp;!</h2>
+    <p style="font-weight:400;font-style:italic;font-size:24px;color:#fff;margin-top:18px;">Échangeons davantage autour d'un café ☕</p>
+    <p class="lead" style="margin-top:18px;">#PeoplePossible</p>
   </div>
-  <div class="media" style="width:440px;"><div style="width:360px;height:300px;background:var(--gray);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:90px;">☕</div></div>
-</section>
-
-<!-- 31 — MERCI MULTILINGUE -->
-<section class="slide">
-  <div class="brand"></div>
-  <img class="merci-cloud" src="../assets/cholet/merci-cloud.png" alt="Merci dans toutes les langues">
 </section>
 
 </div></div>
@@ -656,7 +620,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 <div id="progress"></div>
 <div id="nav">
   <button onclick="go(-1)">← Préc.</button>
-  <span id="counter">1 / 31</span>
+  <span id="counter">1 / 30</span>
   <button onclick="go(1)">Suiv. →</button>
   <button id="sndbtn" onclick="toggleSound()" title="Son (quiz)">🔊</button>
   <button id="fullbtn" onclick="toggleFull()" title="Plein écran (F)">⛶</button>
@@ -678,15 +642,15 @@ const stage=document.getElementById('stage');
 function resize(){const s=Math.min(window.innerWidth/1200,window.innerHeight/675);stage.style.transform='scale('+s+')';}
 window.addEventListener('resize',resize);
 
-/* ===== SON (Web Audio) ===== */
+/* SON (Web Audio) — bravo / arrrf */
 let actx,soundOn=true;
 function ac(){if(!actx)actx=new (window.AudioContext||window.webkitAudioContext)();return actx;}
-function tone(f1,f2,dur,type,vol){if(!soundOn)return;try{const c=ac();const o=c.createOscillator();const g=c.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f1,c.currentTime);if(f2)o.frequency.exponentialRampToValueAtTime(f2,c.currentTime+dur);g.gain.setValueAtTime(vol||.18,c.currentTime);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+dur);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+dur);}catch(e){}}
-function sfxGood(){tone(660,990,.16,'sine',.2);setTimeout(()=>tone(990,1320,.22,'sine',.2),120);}
-function sfxWrong(){tone(200,90,.4,'square',.16);}
+function blip(f,t0,dur,type,vol,slideTo){const c=ac();const o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(f,t0);if(slideTo)o.frequency.linearRampToValueAtTime(slideTo,t0+dur);g.gain.setValueAtTime(.0001,t0);g.gain.exponentialRampToValueAtTime(vol,t0+.02);g.gain.exponentialRampToValueAtTime(.0001,t0+dur);o.connect(g);g.connect(c.destination);o.start(t0);o.stop(t0+dur+.02);}
+function sfxGood(){if(!soundOn)return;try{const c=ac();const n=c.currentTime;[523,659,784,1047].forEach((f,i)=>blip(f,n+i*.10,.30,'triangle',.28));blip(1568,n+.40,.5,'triangle',.18);}catch(e){}}
+function sfxWrong(){if(!soundOn)return;try{const c=ac();const n=c.currentTime;[330,294,262,196].forEach((f,i)=>blip(f,n+i*.17,.22,'sawtooth',.22,f*0.92));}catch(e){}}
 function toggleSound(){soundOn=!soundOn;document.getElementById('sndbtn').textContent=soundOn?'🔊':'🔇';}
 
-/* ===== QUIZ ===== */
+/* QUIZ */
 document.querySelectorAll('.qopts').forEach(wrap=>{
   const correct=wrap.querySelector('[data-correct]');
   const fb=wrap.parentElement.querySelector('.qfeedback');
@@ -695,10 +659,10 @@ document.querySelectorAll('.qopts').forEach(wrap=>{
       if(wrap.dataset.done) return; wrap.dataset.done='1';
       wrap.querySelectorAll('.qopt').forEach(o=>{if(o!==opt&&o!==correct)o.classList.add('dim');});
       if(opt.hasAttribute('data-correct')){
-        opt.classList.add('good'); fb.textContent='✓ Bonne réponse !'; fb.className='qfeedback ok'; sfxGood();
+        opt.classList.add('good'); fb.textContent='🎉 BRAVO ! Bonne réponse'; fb.className='qfeedback ok show'; sfxGood();
       }else{
-        opt.classList.add('bad'); fb.textContent='✗ Mauvaise réponse…'; fb.className='qfeedback ko'; sfxWrong();
-        setTimeout(()=>{correct.classList.add('good','reveal');},750);
+        opt.classList.add('bad'); fb.textContent='😬 Arrrf… mauvaise réponse'; fb.className='qfeedback ko show'; sfxWrong();
+        setTimeout(()=>{correct.classList.add('good','reveal');},800);
       }
     });
   });
