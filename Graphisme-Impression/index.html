@@ -130,6 +130,26 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 /* eyebrow / centered helpers */
 .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 90px;}
 
+/* cover — Before Work + cartes joueurs */
+.cover{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% -10%,#3a3a3a 0%,#222 45%,#141414 100%);overflow:hidden;}
+.cover .logo-c{position:absolute;top:30px;left:50%;transform:translateX(-50%);width:140px;height:48px;background:var(--logo-neg) center/contain no-repeat;}
+.cover .top{position:absolute;top:96px;left:0;right:0;text-align:center;padding:0 60px;}
+.cover .eye{color:var(--red);font-family:var(--sans);font-weight:700;letter-spacing:5px;font-size:13px;}
+.cover h1{font-family:var(--serif);font-weight:700;color:#fff;font-size:58px;line-height:1;letter-spacing:-.5px;margin-top:10px;}
+.cover h1 .num{color:var(--red);}
+.cover .acc{font-family:var(--sans);font-weight:700;color:#fff;font-size:18px;margin-top:14px;}
+.cover .acc b{color:var(--red);}
+.cards{position:absolute;left:0;right:0;bottom:-46px;display:flex;justify-content:center;align-items:flex-end;}
+.cards img{height:356px;width:auto;border-radius:13px;box-shadow:0 20px 44px rgba(0,0,0,.62);outline:2px solid rgba(255,255,255,.06);}
+.cards img:nth-child(1){transform:rotate(-9deg) translateY(26px);margin-right:-26px;z-index:1;}
+.cards img:nth-child(2){transform:rotate(-3deg) translateY(4px);margin-right:-26px;z-index:2;}
+.cards img:nth-child(3){transform:rotate(3deg) translateY(4px);margin-right:-26px;z-index:2;}
+.cards img:nth-child(4){transform:rotate(9deg) translateY(26px);z-index:1;}
+.cover .peopc{position:absolute;left:50%;transform:translateX(-50%);bottom:8px;font-family:var(--sans);font-weight:700;font-size:12px;color:#bdbdbd;z-index:5;}
+
+/* lecteur vidéo embarqué */
+.yt{width:900px;height:506px;border:0;border-radius:14px;box-shadow:0 22px 50px rgba(0,0,0,.55);background:#000;}
+
 /* ===================== NAV ===================== */
 #nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);padding:7px 14px;border-radius:30px;z-index:1000;}
 #nav button{background:none;border:1.5px solid rgba(255,255,255,.28);color:#fff;padding:5px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-family:Arial,sans-serif;transition:background .15s;}
@@ -296,15 +316,35 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 <!-- ====== (data-cholet : retirer pour version réseau) == -->
 <!-- ===================================================== -->
 
-<!-- ============ 10 — TITRE CHOLET ============ -->
-<section class="slide reds" data-cholet>
-  <div class="brand circ"></div>
-  <div style="position:absolute;left:72px;top:96px;right:72px;">
-    <h2 class="t" style="font-size:72px;letter-spacing:1px;">BIENVENUE</h2>
-    <div style="font-family:var(--sans);font-weight:700;font-size:22px;color:#fff;margin-top:14px;line-height:1.3;">à la 6ème édition du Before Work chez<br>Mail Boxes Etc. Cholet</div>
-    <div style="display:inline-block;background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:700;font-size:26px;line-height:1.25;border-radius:14px;padding:22px 30px;margin-top:34px;">AUJOURD'HUI PARLONS<br>GRAPHISME &amp; IMPRESSION</div>
+<!-- ============ 10 — PAGE DE GARDE (Before Work + cartes joueurs) ============ -->
+<section class="slide" data-cholet>
+  <div class="cover">
+    <div class="logo-c"></div>
+    <div class="top">
+      <div class="eye">⚽ MAIL BOXES ETC. CHOLET · ÉDITION COUPE DU MONDE</div>
+      <h1>Bienvenue à notre <span class="num">5<sup style="font-size:.5em;">e</sup></span> Before Work</h1>
+      <div class="acc">Aujourd'hui, parlons <b>Graphisme &amp; Impression</b></div>
+    </div>
+    <div class="cards">
+      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/adba79bef7e3859730c56af98b3a5c19_Joueur%20ALEX%20PARPAILLON_FR3301.png" alt="Alex Parpaillon">
+      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/a8042d9f13b76ff4f297650dbbec264e_Joueur%20AUDE%20HUTEAU_FR3301.png" alt="Aude Huteau">
+      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/ee413880268ae423a2c44b6069127e3d_Joueur%20KAINA%20GODEY_FR3301.png" alt="Kaïna Godey">
+      <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1cad7b59c6c90d6a7b47283abcb9f236_Joueur%20WESLEY%20BEDOT_FR3301.png" alt="Wesley Bedot">
+    </div>
+    <div class="peopc">#PeoplePossible</div>
   </div>
-  <div class="peop" style="position:absolute;right:46px;bottom:30px;font-size:13px;color:#ffd1d6;">#PeoplePossible</div>
+</section>
+
+<!-- ============ 11 — VIDÉO (player embarqué) ============ -->
+<section class="slide dark" data-cholet>
+  <div class="brand"></div>
+  <div style="position:absolute;top:42px;left:0;right:0;text-align:center;">
+    <div style="color:var(--red);font-family:var(--sans);font-weight:700;letter-spacing:4px;font-size:12px;">MBE CHOLET · EN VIDÉO</div>
+    <h2 class="t" style="font-size:30px;margin-top:8px;">Découvrez MBE Cholet</h2>
+  </div>
+  <div style="position:absolute;left:0;right:0;top:120px;display:flex;justify-content:center;">
+    <iframe class="yt" src="https://www.youtube.com/embed/xkfvNPpZi40?rel=0&modestbranding=1" title="MBE Cholet — vidéo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
 </section>
 
 <!-- ============ 11 — MBE FRANCE ============ -->
@@ -509,7 +549,7 @@ html,body{width:100%;height:100%;background:#111;overflow:hidden;font-family:var
 <div id="progress"></div>
 <div id="nav">
   <button onclick="go(-1)">← Préc.</button>
-  <span id="counter">1 / 22</span>
+  <span id="counter">1 / 23</span>
   <button onclick="go(1)">Suiv. →</button>
   <button id="fullbtn" onclick="toggleFull()" title="Plein écran (F)">⛶</button>
 </div>
