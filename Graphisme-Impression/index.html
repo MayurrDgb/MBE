@@ -20,7 +20,7 @@
   --ink:#1A1416; --paper:#FBF8F8; --muted-l:#7a7176; --line-l:#ECE6E7;
   --gold:#C99A2E;
   --logo:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/227727a155bbcb301040aa648ff4841a_MBE%20Logo_complet%20avec%20swoosh%20et%20baseline.png");
-  --logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1514c79aab9578f67e2a630281a77039_MBE_Logo_tr_Ver_NEG.png");
+  --logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/9a34c48b386e80aacc6c5ac5d38b3552_MBE_Logo_tr_Ver_NEG2.png");
   --logo-hor:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/b937bfd066e588115046799b8319602b_Mail%20Boxes%20Etc._Fortidia-Endorsement_RGB.png");
   --f:Ubuntu,Arial,sans-serif;
 }
@@ -34,17 +34,26 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 .slide.active{display:block;}
 .bord{background:radial-gradient(130% 120% at 20% -8%,#B00A18 0%,#6E0813 42%,#2a0509 74%,#160609 100%);color:#fff;}
 .night{background:#0c0608;color:#fff;}
+/* terrain de foot (slide agenda) */
+.pitch{color:#fff;background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 116px,rgba(0,0,0,0) 116px 232px),
+  linear-gradient(165deg,#1d6b39 0%,#155730 48%,#0c3c20 100%);}
+.pitch::before{content:"";position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(circle at 50% 50%,transparent 84px,rgba(255,255,255,.16) 85px 88px,transparent 89px),
+  linear-gradient(90deg,transparent calc(50% - 1.5px),rgba(255,255,255,.16) calc(50% - 1.5px) calc(50% + 1.5px),transparent calc(50% + 1.5px));}
+.pitch::after{content:"";position:absolute;inset:22px;border:2px solid rgba(255,255,255,.14);border-radius:5px;pointer-events:none;}
+.pitch .phead,.pitch .pgrid{position:relative;z-index:2;}
 
 /* brand */
 .brand{position:absolute;top:26px;right:44px;width:118px;height:44px;background:var(--logo) right center/contain no-repeat;z-index:6;}
-.bord .brand,.night .brand{background-image:var(--logo-neg);}
+.bord .brand,.night .brand,.pitch .brand{background-image:var(--logo-neg);}
 
 /* type helpers */
 .eyebrow{font-family:var(--f);font-weight:700;letter-spacing:4px;font-size:12px;color:var(--red);display:flex;align-items:center;gap:12px;}
-.bord .eyebrow,.night .eyebrow{color:#fff;}
+.bord .eyebrow,.night .eyebrow,.pitch .eyebrow{color:#fff;}
 .eyebrow .ln{display:inline-block;width:30px;height:2px;background:currentColor;opacity:.7;}
 .t{font-family:var(--f);font-weight:700;color:var(--ink);line-height:1.05;letter-spacing:-.6px;}
-.bord .t,.night .t{color:#fff;}
+.bord .t,.night .t,.pitch .t{color:#fff;}
 .lead{font-family:var(--f);font-weight:400;color:var(--muted-l);line-height:1.6;font-size:16px;}
 .bord .lead{color:rgba(255,255,255,.78);}
 .accent{color:var(--red);}
@@ -110,6 +119,10 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 /* ===== LIGHT content helpers ===== */
 .head{position:absolute;left:60px;top:52px;}
 .head .t{font-size:36px;}
+/* image-led (illustrations Print en grand plan) */
+.imed-txt{position:absolute;left:60px;top:0;bottom:0;width:480px;display:flex;flex-direction:column;justify-content:center;}
+.imed-img{position:absolute;left:540px;right:24px;top:36px;bottom:36px;display:flex;align-items:center;justify-content:center;}
+.imed-img img{max-width:100%;max-height:100%;object-fit:contain;}
 .col-mid{position:absolute;left:60px;right:60px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;}
 
 /* stat numbers */
@@ -143,6 +156,7 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 .plist{list-style:none;display:flex;flex-direction:column;gap:11px;}
 .plist li{position:relative;padding-left:24px;font-size:15.5px;color:#3a3338;line-height:1.4;}
 .plist li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:50%;background:var(--red);}
+.checks li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--red);font-weight:700;}
 
 /* tips */
 .tips{display:grid;grid-template-columns:1fr 1fr;gap:18px 30px;}
@@ -151,12 +165,9 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 .tip h4{font-size:13.5px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.3px;}
 .tip p{font-size:12.5px;color:var(--muted-l);line-height:1.45;margin-top:3px;}
 
-/* galerie boards */
-.board{position:absolute;left:60px;right:60px;top:108px;bottom:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;padding:18px;box-shadow:0 18px 44px rgba(0,0,0,.4);}
-.board.lightb{background:#fff;}
-.board.darkb{background:#0c0608;border:1px solid rgba(255,255,255,.1);}
-.board img{max-width:100%;max-height:100%;object-fit:contain;}
-.galcap{position:absolute;left:60px;top:54px;}
+/* galerie — réalisations transparentes (labels blancs) directement sur le fond sombre */
+.galimg{position:absolute;left:44px;right:44px;top:92px;bottom:30px;width:auto;height:auto;object-fit:contain;}
+.galcap{position:absolute;left:60px;top:50px;z-index:3;}
 
 /* témoignage */
 .tphoto{position:absolute;left:80px;top:0;bottom:0;display:flex;align-items:center;}
@@ -174,10 +185,14 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 
 /* écosystème — grille de cartes */
 .eco-grid{position:absolute;left:60px;right:60px;top:160px;bottom:48px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:16px;}
-.ecard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:20px 18px;display:flex;flex-direction:column;justify-content:center;gap:8px;backdrop-filter:blur(4px);}
+.ecard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:18px;display:flex;flex-direction:column;justify-content:center;gap:6px;backdrop-filter:blur(4px);}
+.ecard .estep{font-size:9.5px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.5);}
+.ecard .estep.gold{color:var(--gold);}
 .ecard .en{font-weight:700;font-size:17px;color:#fff;}
 .ecard .en b{color:#ff8a93;}
 .ecard .ed{font-size:11.5px;color:rgba(255,255,255,.62);line-height:1.4;}
+.ecard.vert{border-color:rgba(201,154,46,.5);background:linear-gradient(160deg,rgba(201,154,46,.16),rgba(255,255,255,.04));}
+.ecard.vert .en b{color:var(--gold);}
 
 /* transporteurs */
 .carriers{position:absolute;left:80px;right:80px;top:172px;bottom:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
@@ -223,8 +238,8 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
   </div>
 </section>
 
-<!-- 2 — PROGRAMME -->
-<section class="slide bord">
+<!-- 2 — PROGRAMME (terrain de foot) -->
+<section class="slide pitch">
   <div class="brand"></div>
   <div class="phead">
     <div class="eyebrow"><span class="ln"></span>LE DÉROULÉ</div>
@@ -375,15 +390,15 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 
 <!-- 13 — MBE CHOLET -->
 <section class="slide">
-  <div style="position:absolute;left:60px;top:0;bottom:0;width:440px;display:flex;flex-direction:column;justify-content:center;">
+  <div style="position:absolute;left:60px;top:0;bottom:0;width:460px;display:flex;flex-direction:column;justify-content:center;">
     <div class="eyebrow"><span class="ln"></span>VOTRE CENTRE DE PROXIMITÉ</div>
     <h2 class="t" style="font-size:40px;margin-top:12px;">Mail Boxes Etc.<br>Cholet</h2>
-    <div style="display:flex;gap:30px;margin-top:24px;">
-      <div><div class="stat" style="font-size:30px;">2022</div><div style="font-size:12px;color:var(--muted-l);font-weight:700;">Ouverture</div></div>
-      <div><div class="stat" style="font-size:30px;">60+</div><div style="font-size:12px;color:var(--muted-l);font-weight:700;">Clients pros</div></div>
-      <div><div class="stat" style="font-size:30px;">B2B·B2C</div><div style="font-size:12px;color:var(--muted-l);font-weight:700;">Nos clients</div></div>
+    <p class="lead" style="margin-top:18px;font-size:15px;">Ouvert depuis <b style="color:var(--ink);">2022</b>, au service des professionnels et des particuliers <b style="color:var(--ink);">(B2B &amp; B2C)</b> du territoire Choletais et de ses alentours.</p>
+    <div style="display:flex;align-items:baseline;gap:14px;margin-top:26px;">
+      <div class="stat" style="font-size:62px;">60+</div>
+      <div style="font-size:14px;font-weight:700;color:var(--ink);line-height:1.2;">clients<br>professionnels</div>
     </div>
-    <p class="lead" style="margin-top:22px;font-size:14px;">Sur le territoire Choletais et ses alentours, dans des domaines variés.</p>
+    <p class="lead" style="margin-top:14px;font-size:13.5px;">…accompagnés dans des domaines d'activité très variés&nbsp;:</p>
   </div>
   <div style="position:absolute;right:56px;top:0;bottom:0;width:560px;display:flex;flex-direction:column;justify-content:center;">
     <div class="chips">
@@ -409,7 +424,7 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
     <div class="eyebrow"><span class="ln"></span>EXPÉRIENCE CLIENT</div>
     <h2 class="t" style="font-size:44px;margin-top:12px;">Baptiste nous raconte…</h2>
     <p class="lead" style="margin-top:16px;font-size:17px;">Son expérience client avec Mail Boxes Etc. Cholet.</p>
-    <div class="zenchip"><span class="zw"><img src="../assets/cholet/zen-logo.png" alt=""></span><span>ZEN NET · ZEN HOME</span></div>
+    <div class="zenchip"><span class="zw"><img src="../assets/cholet/zen-home.png" alt=""></span><span>ZEN NET · ZEN HOME</span></div>
   </div>
 </section>
 
@@ -466,22 +481,58 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
   </div>
 </section>
 
-<!-- 19 — TYPES D'IMPRESSION -->
+<!-- 19 — PETIT FORMAT (illustration en grand) -->
 <section class="slide">
-  <div class="head"><div class="eyebrow"><span class="ln"></span>CE QUE NOUS IMPRIMONS</div><h2 class="t" style="margin-top:10px;">Du petit au grand format</h2></div>
-  <div style="position:absolute;left:60px;right:60px;top:158px;bottom:46px;display:grid;grid-template-columns:1fr 1fr;gap:28px;">
-    <div style="background:#fff;border:1px solid var(--line-l);border-radius:18px;padding:26px 30px;box-shadow:0 10px 28px rgba(0,0,0,.06);">
-      <div style="display:flex;align-items:center;gap:12px;"><div style="width:42px;height:42px;border-radius:12px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;">🖨️</div><div style="font-weight:700;font-size:18px;color:var(--ink);">Petit format</div></div>
-      <ul class="plist" style="margin-top:18px;"><li>Cartes de visite</li><li>Flyers &amp; prospectus</li><li>Brochures &amp; dépliants</li><li>Affiches (A4 → A0)</li><li>Étiquettes &amp; autocollants</li><li>Documents reliés &amp; plastifiés</li></ul>
-    </div>
-    <div style="background:#fff;border:1px solid var(--line-l);border-radius:18px;padding:26px 30px;box-shadow:0 10px 28px rgba(0,0,0,.06);">
-      <div style="display:flex;align-items:center;gap:12px;"><div style="width:42px;height:42px;border-radius:12px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;">🪧</div><div style="font-weight:700;font-size:18px;color:var(--ink);">Grand format &amp; signalétique</div></div>
-      <ul class="plist" style="margin-top:18px;"><li>Roll-ups &amp; kakémonos</li><li>Bâches &amp; banderoles</li><li>Adhésifs &amp; vitrophanies</li><li>Panneaux &amp; PLV</li><li>Flammes &amp; oriflammes</li><li>Signalétique d'événement</li></ul>
-    </div>
+  <div class="brand"></div>
+  <div class="imed-txt">
+    <div class="eyebrow"><span class="ln"></span>IMPRESSION · PETIT FORMAT</div>
+    <h2 class="t" style="font-size:38px;margin-top:12px;">Le détail qui fait la différence</h2>
+    <ul class="plist" style="margin-top:20px;"><li>Cartes de visite</li><li>Flyers &amp; prospectus</li><li>Brochures &amp; dépliants</li><li>Affiches (A4 → A0)</li><li>Étiquettes &amp; autocollants</li><li>Documents reliés &amp; plastifiés</li></ul>
   </div>
+  <div class="imed-img"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1169da63afed285ca4f28230e32fce1b_Illustration_Print%20%289%29.png" alt="Flyers, affiches, cartes de visite"></div>
 </section>
 
-<!-- 20 — CONSEILS -->
+<!-- 20 — GRAND FORMAT -->
+<section class="slide">
+  <div class="brand"></div>
+  <div class="imed-txt">
+    <div class="eyebrow"><span class="ln"></span>IMPRESSION · GRAND FORMAT</div>
+    <h2 class="t" style="font-size:38px;margin-top:12px;">Marquez l'espace,<br>marquez les esprits</h2>
+    <ul class="plist" style="margin-top:20px;"><li>Roll-ups &amp; kakémonos</li><li>Bâches &amp; banderoles</li><li>Adhésifs &amp; vitrophanies</li><li>Panneaux &amp; PLV</li><li>Flammes &amp; oriflammes</li><li>Signalétique d'événement</li></ul>
+  </div>
+  <div class="imed-img"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/6a9322f6f9b4542cd27a9adb8717e409_Illustration_Print%20%2810%29.png" alt="Stand salon, signalétique"></div>
+</section>
+
+<!-- 21 — OBJETS PUBLICITAIRES -->
+<section class="slide">
+  <div class="brand"></div>
+  <div class="imed-txt">
+    <div class="eyebrow"><span class="ln"></span>OBJETS PUBLICITAIRES</div>
+    <h2 class="t" style="font-size:36px;margin-top:12px;">Votre marque dans les mains de vos clients</h2>
+    <p class="lead" style="margin-top:14px;font-size:14.5px;">Prolongez votre image au-delà du papier — un large catalogue d'objets personnalisables, via nos partenaires.</p>
+    <ul class="plist two" style="display:grid;grid-template-columns:1fr 1fr;gap:9px 20px;margin-top:16px;"><li>Tote bags</li><li>Stylos &amp; crayons</li><li>Mugs &amp; gourdes</li><li>Clés USB</li><li>T-shirts &amp; polos</li><li>Carnets &amp; agendas</li></ul>
+  </div>
+  <div class="imed-img"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/9e3fc41281498f686dfc02e2e4b504b8_Illustration_Print%20%286%29.png" alt="Goodies brandés"></div>
+</section>
+
+<!-- 22 — GRAPHISME -->
+<section class="slide">
+  <div class="brand"></div>
+  <div class="imed-txt">
+    <div class="eyebrow"><span class="ln"></span>GRAPHISME</div>
+    <h2 class="t" style="font-size:38px;margin-top:12px;">Besoin d'aide<br>sur vos fichiers&nbsp;?</h2>
+    <ul class="checks" style="list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:10px;">
+      <li style="position:relative;padding-left:26px;font-size:15px;color:#3a3338;">Création de logo &amp; identité visuelle</li>
+      <li style="position:relative;padding-left:26px;font-size:15px;color:#3a3338;">Mise en page de vos supports</li>
+      <li style="position:relative;padding-left:26px;font-size:15px;color:#3a3338;">Retouche de fichiers existants</li>
+      <li style="position:relative;padding-left:26px;font-size:15px;color:#3a3338;">Préparation de fichiers print-ready</li>
+    </ul>
+    <p class="lead" style="margin-top:14px;font-size:14.5px;"><b style="color:var(--red);">Pas de fichier prêt&nbsp;?</b> On s'occupe de tout.</p>
+  </div>
+  <div class="imed-img"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/3a0c995dc81d11e9a88333e7af1df17b_Illustration_Print%20%283%29.png" alt="De l'esquisse à l'affiche"></div>
+</section>
+
+<!-- 23 — CONSEILS -->
 <section class="slide">
   <div class="head"><div class="eyebrow"><span class="ln"></span>LES BONS RÉFLEXES</div><h2 class="t" style="margin-top:10px;">Avant d'imprimer</h2></div>
   <div class="tips" style="position:absolute;left:60px;right:60px;top:160px;bottom:46px;align-content:center;">
@@ -494,41 +545,21 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
   </div>
 </section>
 
-<!-- 21 — NOS SOLUTIONS -->
-<section class="slide">
-  <div style="position:absolute;top:50px;left:0;right:0;text-align:center;"><div class="eyebrow" style="justify-content:center;">NOS SOLUTIONS</div><h2 class="t" style="font-size:34px;margin-top:8px;">Impression &amp; graphisme, de A à Z</h2></div>
-  <div style="position:absolute;left:60px;right:60px;top:150px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;height:228px;">
-    <div style="background:var(--paper);border:1px solid var(--line-l);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:14px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/1169da63afed285ca4f28230e32fce1b_Illustration_Print%20%289%29.png" style="max-width:100%;max-height:100%;object-fit:contain;" alt=""></div>
-    <div style="background:var(--paper);border:1px solid var(--line-l);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:14px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/3a0c995dc81d11e9a88333e7af1df17b_Illustration_Print%20%283%29.png" style="max-width:100%;max-height:100%;object-fit:contain;" alt=""></div>
-    <div style="background:var(--paper);border:1px solid var(--line-l);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:14px;"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/831c55ec0cf656b23da1d778739bc119_Illustration_Print%20%287%29.png" style="max-width:100%;max-height:100%;object-fit:contain;" alt=""></div>
-  </div>
-  <div style="position:absolute;left:60px;right:60px;bottom:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
-    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:15px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">🖊️</div><div style="font-weight:700;color:var(--ink);font-size:12.5px;">Création graphique</div></div>
-    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:15px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">🖨️</div><div style="font-weight:700;color:var(--ink);font-size:12.5px;">Impression tous formats</div></div>
-    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:15px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">📃</div><div style="font-weight:700;color:var(--ink);font-size:12.5px;">Supports de communication</div></div>
-    <div style="text-align:center;"><div style="width:54px;height:54px;border-radius:15px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 8px;">📐</div><div style="font-weight:700;color:var(--ink);font-size:12.5px;">Finitions &amp; façonnage</div></div>
-  </div>
-</section>
-
-<!-- 22 — GALERIE 1 (labels noirs → board clair) -->
+<!-- 22-24 — GALERIES RÉALISATIONS (transparent, labels blancs, sur fond sombre) -->
 <section class="slide bord">
   <div class="brand"></div>
   <div class="galcap"><div class="eyebrow"><span class="ln"></span>RÉALISATIONS · MBE CHOLET</div></div>
-  <div class="board lightb"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/c7fce099b3279d5ea00a08b4e3d79464_Illustration_Print3301_a.png" alt="Réalisations MBE Cholet"></div>
+  <img class="galimg" src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/c7fce099b3279d5ea00a08b4e3d79464_Illustration_Print3301_a.png" alt="Réalisations MBE Cholet">
 </section>
-
-<!-- 23 — GALERIE 2 (labels blancs → board sombre) -->
 <section class="slide bord">
   <div class="brand"></div>
   <div class="galcap"><div class="eyebrow"><span class="ln"></span>RÉALISATIONS · MBE CHOLET</div></div>
-  <div class="board darkb"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/b9d6904b4bd9830b05faab84751a21a9_Illustration_Print3301_b.png" alt="Réalisations MBE Cholet"></div>
+  <img class="galimg" src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/b9d6904b4bd9830b05faab84751a21a9_Illustration_Print3301_b.png" alt="Réalisations MBE Cholet">
 </section>
-
-<!-- 24 — GALERIE 3 (labels noirs → board clair) -->
 <section class="slide bord">
   <div class="brand"></div>
   <div class="galcap"><div class="eyebrow"><span class="ln"></span>RÉALISATIONS · MBE CHOLET</div></div>
-  <div class="board lightb"><img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/84c24d413a8ffe874e7c5eb4243a966f_Illustration_Print3301_c.png" alt="Réalisations MBE Cholet"></div>
+  <img class="galimg" src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/84c24d413a8ffe874e7c5eb4243a966f_Illustration_Print3301_c.png" alt="Réalisations MBE Cholet">
 </section>
 
 <!-- 25 — TRANSITION : Wesley -->
@@ -562,14 +593,14 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
     <h2 class="t" style="font-size:36px;margin-top:10px;">L'écosystème MBE</h2>
   </div>
   <div class="eco-grid">
-    <div class="ecard"><div class="en">MBE <b>eShip</b></div><div class="ed">Expédition multi-transporteurs connectée à votre e-commerce.</div></div>
-    <div class="ecard"><div class="en">MBE <b>Fulfillment</b></div><div class="ed">Logistique externalisée : stockage, préparation, expédition.</div></div>
-    <div class="ecard"><div class="en">MBE <b>Auction</b></div><div class="ed">Emballage &amp; envoi pour les ventes aux enchères.</div></div>
-    <div class="ecard"><div class="en">MBE <b>Wine</b></div><div class="ed">Solutions d'expédition dédiées aux vins &amp; spiritueux.</div></div>
-    <div class="ecard"><div class="en">MBE <b>Packing</b></div><div class="ed">Emballage professionnel sur-mesure, même fragile.</div></div>
-    <div class="ecard"><div class="en">MBE <b>Shipping</b></div><div class="ed">Courtage transport France, Europe et international.</div></div>
-    <div class="ecard"><div class="en">MBE <b>OnLine</b></div><div class="ed">Vos commandes d'impression et d'envoi en ligne.</div></div>
-    <div class="ecard"><div class="en">MBE <b>SafeValue</b></div><div class="ed">Protection renforcée des envois de valeur.</div></div>
+    <div class="ecard"><div class="estep">1 · ON EMBALLE</div><div class="en">MBE <b>Packing</b></div><div class="ed">Emballage professionnel sur-mesure, même fragile.</div></div>
+    <div class="ecard"><div class="estep">2 · ON EXPÉDIE</div><div class="en">MBE <b>Shipping</b></div><div class="ed">Courtage transport France, Europe et international.</div></div>
+    <div class="ecard"><div class="estep">3 · E-COMMERCE</div><div class="en">MBE <b>eShip</b></div><div class="ed">Expédition multi-transporteurs connectée à votre boutique.</div></div>
+    <div class="ecard"><div class="estep">4 · ON GÈRE</div><div class="en">MBE <b>Fulfillment</b></div><div class="ed">Logistique externalisée : stockage, préparation, envoi.</div></div>
+    <div class="ecard"><div class="estep">5 · EN LIGNE</div><div class="en">MBE <b>OnLine</b></div><div class="ed">Vos commandes d'impression et d'envoi, en quelques clics.</div></div>
+    <div class="ecard"><div class="estep">6 · EN SÉCURITÉ</div><div class="en">MBE <b>SafeValue</b></div><div class="ed">Protection renforcée des envois de valeur.</div></div>
+    <div class="ecard vert"><div class="estep gold">VERTICAL MÉTIER</div><div class="en">MBE <b>Auction</b></div><div class="ed">Emballage &amp; envoi pour les ventes aux enchères.</div></div>
+    <div class="ecard vert"><div class="estep gold">VERTICAL MÉTIER</div><div class="en">MBE <b>Wine</b></div><div class="ed">Expédition dédiée aux vins &amp; spiritueux.</div></div>
   </div>
 </section>
 
@@ -608,6 +639,7 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 <!-- 30 — MERCI -->
 <section class="slide bord">
   <div class="merci">
+    <div style="width:152px;height:66px;background:var(--logo-neg) center/contain no-repeat;margin-bottom:22px;"></div>
     <div class="eyebrow" style="justify-content:center;"><span class="ln"></span>MBE CHOLET<span class="ln"></span></div>
     <h2 class="t" style="font-size:56px;margin-top:18px;">Merci&nbsp;!</h2>
     <p style="font-weight:400;font-style:italic;font-size:24px;color:#fff;margin-top:18px;">Échangeons davantage autour d'un café ☕</p>
@@ -620,7 +652,7 @@ html,body{width:100%;height:100%;background:#0a0506;overflow:hidden;font-family:
 <div id="progress"></div>
 <div id="nav">
   <button onclick="go(-1)">← Préc.</button>
-  <span id="counter">1 / 30</span>
+  <span id="counter">1 / 32</span>
   <button onclick="go(1)">Suiv. →</button>
   <button id="sndbtn" onclick="toggleSound()" title="Son (quiz)">🔊</button>
   <button id="fullbtn" onclick="toggleFull()" title="Plein écran (F)">⛶</button>
