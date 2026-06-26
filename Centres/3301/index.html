@@ -6,64 +6,97 @@
   <script>window.MBE_GATE={resource:'centre:3301'}</script>
   <script src="../../gate.js" defer></script>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MBE 3301 Cholet — Présentations</title>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#f4f5f7;color:#221E1F;min-height:100vh;display:flex;flex-direction:column}
-    .topbar{display:flex;align-items:center;gap:14px;padding:16px 28px;background:linear-gradient(100deg,#E2001A 0%,#8c0a16 52%,#221E1F 100%);box-shadow:0 4px 18px rgba(20,25,40,.18)}
-    .topbar img{height:46px}
-    .topbar .title{color:#fff;font-size:20px;font-weight:700;letter-spacing:-.2px}
-    .topbar .title small{display:block;font-size:12px;font-weight:400;opacity:.85;letter-spacing:.04em;text-transform:uppercase}
-    main{flex:1;max-width:1100px;width:100%;margin:0 auto;padding:36px 28px}
-    h1{font-size:24px;margin-bottom:4px}
-    .sub{color:#76767A;margin-bottom:28px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-    .card{display:flex;flex-direction:column;gap:8px;min-height:180px;padding:24px;border-radius:16px;color:#fff;text-decoration:none;
-      background-size:cover;background-position:center;box-shadow:0 10px 28px rgba(10,12,18,.25);transition:transform .18s,box-shadow .18s,filter .18s}
-    .card:hover{transform:translateY(-5px);box-shadow:0 20px 46px rgba(10,12,18,.4);filter:brightness(1.08)}
-    .card .icon{font-size:34px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
-    .card .name{font-size:20px;font-weight:800;margin-top:auto}
-    .card .desc{font-size:13.5px;color:rgba(255,255,255,.85)}
-    .card.soon{pointer-events:none;opacity:.65}
-    .tag{align-self:flex-start;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:rgba(255,255,255,.2);padding:3px 9px;border-radius:20px}
-    footer{text-align:center;padding:20px;color:#76767A;font-size:12.5px;letter-spacing:.03em}
-  </style>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MBE 3301 Cholet — Présentations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#E2001A; --bord:#8B0A16; --ink:#1A1416;
+  --logo-neg:url("https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/9a34c48b386e80aacc6c5ac5d38b3552_MBE_Logo_tr_Ver_NEG2.png");
+  --sans:Ubuntu,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  min-height:100%;color:#fff;font-family:var(--sans);-webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(130% 110% at 18% -10%, #E2001A 0%, #B00A18 26%, #6E0813 48%, #2B0509 72%, #140608 100%) fixed;
+}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 36px;}
+
+/* hero */
+.hero{padding:64px 0 24px;}
+.logo{height:74px;width:160px;background:var(--logo-neg) left center/contain no-repeat;margin-bottom:40px;}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:4px;color:rgba(255,255,255,.78);display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.eyebrow .ln{display:inline-block;width:34px;height:2px;background:rgba(255,255,255,.6);}
+h1{font-weight:300;font-size:54px;line-height:1.04;letter-spacing:-1px;color:#fff;max-width:780px;}
+h1 b{font-weight:700;}
+.intro{font-size:16px;color:rgba(255,255,255,.75);line-height:1.6;max-width:600px;margin-top:22px;}
+.intro b{color:#fff;font-weight:700;}
+
+/* sections */
+.section{padding:34px 0 4px;}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:20px;}
+.sec-head .tag{font-size:12px;font-weight:700;letter-spacing:3px;color:#fff;}
+.sec-head .rule{flex:1;height:1px;background:rgba(255,255,255,.18);}
+.sec-head .count{font-size:12px;color:rgba(255,255,255,.5);font-weight:500;}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.card{display:flex;flex-direction:column;text-decoration:none;background:#fff;border-radius:18px;padding:28px 26px 24px;position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease;min-height:184px;box-shadow:0 10px 30px rgba(0,0,0,.28);}
+.card:hover{transform:translateY(-5px);box-shadow:0 22px 50px rgba(0,0,0,.42);}
+.card .bar{position:absolute;top:0;left:0;right:0;height:5px;background:var(--red);}
+.card .kicker{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--red);margin-bottom:12px;}
+.card h2{font-family:var(--sans);font-weight:700;font-size:23px;line-height:1.12;color:var(--ink);margin-bottom:10px;}
+.card p{font-size:13px;line-height:1.6;color:#6a6a6e;flex:1;}
+.card .go{display:inline-flex;align-items:center;gap:7px;margin-top:16px;font-size:12.5px;font-weight:700;color:var(--ink);transition:gap .16s ease,color .16s ease;}
+.card:hover .go{gap:12px;color:var(--red);}
+
+footer{margin-top:56px;border-top:1px solid rgba(255,255,255,.14);}
+.foot{display:flex;justify-content:space-between;align-items:center;padding:22px 0 42px;flex-wrap:wrap;gap:10px;}
+.foot .conf{font-size:11px;color:rgba(255,255,255,.5);}
+.foot .by{font-size:11px;color:rgba(255,255,255,.5);}
+.foot .by b{color:rgba(255,255,255,.85);font-weight:700;}
+
+@media(max-width:860px){.grid{grid-template-columns:1fr 1fr;}h1{font-size:42px;}}
+@media(max-width:560px){.grid{grid-template-columns:1fr;}h1{font-size:33px;}.wrap{padding:0 22px;}}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/9a34c48b386e80aacc6c5ac5d38b3552_MBE_Logo_tr_Ver_NEG2.png" alt="MBE">
-    <span class="title">MBE 3301 Cholet<small>Espace présentations du centre</small></span>
-  </header>
 
-  <main>
-    <h1>Vos présentations</h1>
-    <p class="sub">Les présentations dédiées à votre centre. Cet espace n'est accessible qu'avec le compte <strong>mbe3301@mbefrance.fr</strong>.</p>
+<header class="hero">
+  <div class="wrap">
+    <div class="logo" role="img" aria-label="Mail Boxes Etc."></div>
+    <div class="eyebrow"><span class="ln"></span>MBE 3301 CHOLET · ESPACE PRÉSENTATIONS</div>
+    <h1>Les présentations de <b>votre centre</b></h1>
+    <p class="intro">Cet espace est réservé à <b>MBE 3301 Cholet</b> (compte <b>mbe3301@mbefrance.fr</b>). Cliquez sur une carte pour ouvrir le deck.</p>
+  </div>
+</header>
 
+<main class="wrap">
+  <section class="section">
+    <div class="sec-head"><span class="tag">PRÉSENTATIONS</span><span class="rule"></span><span class="count">1 présentation</span></div>
     <div class="grid">
-      <!-- MODÈLE de carte — dupliquer + pointer href vers le deck du centre :
-      <a class="card" href="Graphisme-Impression/" style="background-image:linear-gradient(150deg,rgba(15,17,24,.55),rgba(15,17,24,.85)),url(IMAGE)">
-        <span class="icon">🎨</span>
-        <span class="name">Titre du deck</span>
-        <span class="desc">Description courte</span>
-      </a>
-      -->
-
-      <a class="card" href="Graphisme-Impression/" style="background-image:linear-gradient(150deg,rgba(15,17,24,.5),rgba(15,17,24,.82)),radial-gradient(130% 120% at 20% -8%,#B00A18,#6E0813 42%,#2a0509 74%,#160609)">
-        <span class="icon">🎨</span>
-        <span class="name">Graphisme &amp; Impression</span>
-        <span class="desc">6ᵉ Before Work — services graphisme &amp; impression de votre centre.</span>
-      </a>
-      <a class="card soon" href="#" style="background:linear-gradient(135deg,#16273f,#0b1624)">
-        <span class="tag">Bientôt</span>
-        <span class="icon">📦</span>
-        <span class="name">Services &amp; Logistique</span>
-        <span class="desc">Offre de services du centre.</span>
+      <a class="card" href="Graphisme-Impression/">
+        <div class="bar"></div>
+        <div class="kicker">6ᵉ BEFORE WORK</div>
+        <h2>Graphisme &amp; Impression</h2>
+        <p>Le Before Work de votre centre : quiz, réalisations et solutions d'impression — de l'idée au produit fini.</p>
+        <span class="go">Ouvrir le deck →</span>
       </a>
     </div>
-  </main>
+  </section>
+</main>
 
-  <footer>Crafted by Mayurr</footer>
+<footer>
+  <div class="wrap foot">
+    <span class="conf">© 2026 Mail Boxes Etc. — une société Fortidia · Document confidentiel — MBE 3301 Cholet</span>
+    <span class="by">Réalisé par <b>Mayurr</b></span>
+  </div>
+</footer>
+
 </body>
 </html>
