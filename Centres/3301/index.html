@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- MBE-ACCESS-GATE : hub présentations du Centre 3301 (accessible à mbe3301@mbefrance.fr) -->
+  <style>body{visibility:hidden}</style>
+  <script>window.MBE_GATE={resource:'centre:3301'}</script>
+  <script src="../../gate.js" defer></script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBE 3301 Cholet — Présentations</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#f4f5f7;color:#221E1F;min-height:100vh;display:flex;flex-direction:column}
+    .topbar{display:flex;align-items:center;gap:14px;padding:16px 28px;background:linear-gradient(100deg,#E2001A 0%,#8c0a16 52%,#221E1F 100%);box-shadow:0 4px 18px rgba(20,25,40,.18)}
+    .topbar img{height:46px}
+    .topbar .title{color:#fff;font-size:20px;font-weight:700;letter-spacing:-.2px}
+    .topbar .title small{display:block;font-size:12px;font-weight:400;opacity:.85;letter-spacing:.04em;text-transform:uppercase}
+    main{flex:1;max-width:1100px;width:100%;margin:0 auto;padding:36px 28px}
+    h1{font-size:24px;margin-bottom:4px}
+    .sub{color:#76767A;margin-bottom:28px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+    .card{display:flex;flex-direction:column;gap:8px;min-height:180px;padding:24px;border-radius:16px;color:#fff;text-decoration:none;
+      background-size:cover;background-position:center;box-shadow:0 10px 28px rgba(10,12,18,.25);transition:transform .18s,box-shadow .18s,filter .18s}
+    .card:hover{transform:translateY(-5px);box-shadow:0 20px 46px rgba(10,12,18,.4);filter:brightness(1.08)}
+    .card .icon{font-size:34px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+    .card .name{font-size:20px;font-weight:800;margin-top:auto}
+    .card .desc{font-size:13.5px;color:rgba(255,255,255,.85)}
+    .card.soon{pointer-events:none;opacity:.65}
+    .tag{align-self:flex-start;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;background:rgba(255,255,255,.2);padding:3px 9px;border-radius:20px}
+    footer{text-align:center;padding:20px;color:#76767A;font-size:12.5px;letter-spacing:.03em}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <img src="https://s3.eu-south-1.amazonaws.com/public.eu.printspeak.com/assets/9a34c48b386e80aacc6c5ac5d38b3552_MBE_Logo_tr_Ver_NEG2.png" alt="MBE">
+    <span class="title">MBE 3301 Cholet<small>Espace présentations du centre</small></span>
+  </header>
+
+  <main>
+    <h1>Vos présentations</h1>
+    <p class="sub">Les présentations dédiées à votre centre. Cet espace n'est accessible qu'avec le compte <strong>mbe3301@mbefrance.fr</strong>.</p>
+
+    <div class="grid">
+      <!-- MODÈLE de carte — dupliquer + pointer href vers le deck du centre :
+      <a class="card" href="Graphisme-Impression/" style="background-image:linear-gradient(150deg,rgba(15,17,24,.55),rgba(15,17,24,.85)),url(IMAGE)">
+        <span class="icon">🎨</span>
+        <span class="name">Titre du deck</span>
+        <span class="desc">Description courte</span>
+      </a>
+      -->
+
+      <a class="card soon" href="#" style="background:linear-gradient(135deg,#2a2440,#120f1f)">
+        <span class="tag">Bientôt</span>
+        <span class="icon">🎨</span>
+        <span class="name">Graphisme &amp; Impression</span>
+        <span class="desc">Présentation des services graphisme &amp; impression du centre.</span>
+      </a>
+      <a class="card soon" href="#" style="background:linear-gradient(135deg,#16273f,#0b1624)">
+        <span class="tag">Bientôt</span>
+        <span class="icon">📦</span>
+        <span class="name">Services &amp; Logistique</span>
+        <span class="desc">Offre de services du centre.</span>
+      </a>
+    </div>
+  </main>
+
+  <footer>Crafted by Mayurr</footer>
+</body>
+</html>
